@@ -4,16 +4,14 @@ public class Character {
 
   private final String name;
   private int health = 100;
-  private String specialty;
 
-  public Character(String name, String specialty) {
+  public Character(String name) {
     this.name = name;
-    this.specialty = specialty;
   }
 
-  public int attack(){
-    int damage = 0;
+  public int attack(int damage){
     // TODO add rng for random damage
+    System.out.println("Attack!");
     return damage;
   }
 

@@ -2,13 +2,12 @@ package com.monsters.model;
 
 public class Monster extends AbstractMonster{
 
-  public Monster(String name, String specialty, String key, int health) {
-    super(name, specialty, key, health);
+  public Monster(String name,String key) {
+    super(name, key);
   }
 
   @Override
-  public int attack() {
-    int damage = 1;
+  public int attack(int damage) {
     // TODO add rng for random damage
     System.out.println("Attack!");
     return 1;

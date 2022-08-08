@@ -3,19 +3,17 @@ package com.monsters.model;
 public abstract class AbstractMonster {
 
   private String name;
-  private String specialty;
   private int health;
   private String key;
 
 
-  public AbstractMonster(String name, String specialty, String key, int health) {
+  public AbstractMonster(String name,String key) {
     this.name = name;
-    this.specialty = specialty;
     this.key = key;
-    this.health = health;
+    this.health = 100;
   }
 
-  public abstract int attack();
+  public abstract int attack(int damage);
 
   public abstract void roar();
 
@@ -47,11 +45,4 @@ public abstract class AbstractMonster {
     this.name = name;
   }
 
-  public String getSpecialty() {
-    return specialty;
-  }
-
-  public void setSpecialty(String specialty) {
-    this.specialty = specialty;
-  }
 }
