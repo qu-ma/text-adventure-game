@@ -39,13 +39,13 @@ public class TextGamePresentation implements GamePresentation {
   @Override
   public String stateRepresentation(Game game, String character, String monster) {
     String player = game.getState().isFinished() ? ((game.getState() == State.PLAYER_WIN) ? character : monster) : ((game.getState() == State.PLAYER_MOVE) ? character : monster);
-    String next = game.getState().isFinished() ? String.format(winGamePattern, character) : String.format(playStatePattern, character);
-    return String.format(gameSummaryPattern, game.getCharacterHealth(), game.getMonsterHealth(), game.getCharacterKeys());
+    String next = game.getState().isFinished() ? String.format(winGamePattern, player) : String.format(playStatePattern, player);
+    return String.format(gameSummaryPattern, game.getCharacterHealth(), game.getMonsterHealth(), game.getCharacterKeys(), next);
   }
 
   @Override
-  public Object characterStatusNotice(Game game, String player, String monster) {
-    return null;
+  public Object characterStatusNotice(Game game, String character, String monster) {
+    return String.format();
   }
 
   @Override
@@ -77,7 +77,6 @@ public class TextGamePresentation implements GamePresentation {
   public Object roundStartNotice() {
     return null;
   }
-
 
   @Override
   public Object movePresentation(String player) {
