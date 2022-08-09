@@ -1,10 +1,14 @@
 package com.monsters.view;
 
+import com.monsters.model.Game;
+
 public interface GamePresentation<T> {
 
   T characterStatusNotice (Game game, String player, String monster);
 
-  T gameSummaryNotice;
+  T gameSummaryNotice();
+
+  Object stateRepresentation(Game game, String player, String monster);
 
   T nextMoveNotice(String player);
 

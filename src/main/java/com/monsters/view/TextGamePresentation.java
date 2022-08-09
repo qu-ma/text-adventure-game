@@ -41,13 +41,44 @@ public class TextGamePresentation implements GamePresentation {
   }
 
   @Override
+  public Object characterStatusNotice(Game game, String player, String monster) {
+    return null;
+  }
+
+  @Override
+  public Object gameSummaryNotice() {
+    return null;
+  }
+
+  @Override
   public Object nextMoveNotice(String player) {
     return String.format(nextMovePattern, player);
   }
 
   @Override
-  public Object movePresentation(int move, String player) {
-    return String.format(attackReportPattern, move, player);
+  public Object winRoundNotice(String playerName) {
+    return null;
+  }
+
+  @Override
+  public Object winGameNotice() {
+    return null;
+  }
+
+  @Override
+  public Object lostGameNotice() {
+    return null;
+  }
+
+  @Override
+  public Object roundStartNotice() {
+    return null;
+  }
+
+
+  @Override
+  public Object movePresentation(String player) {
+    return String.format(attackReportPattern, player);
   }
 
   @Override
