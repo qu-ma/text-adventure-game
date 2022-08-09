@@ -20,8 +20,6 @@ public class DungeonMaster {
   private final int MIN = 1;
   private final int MAX = 10;
 
-  Random rng;
-
   public DungeonMaster(BufferedReader reader, Monster monster, Character character, Game game,
       TextGamePresentation presentation) {
     this.reader = reader;
@@ -35,15 +33,9 @@ public class DungeonMaster {
     boolean victory = false;
     boolean playerTurn = true;
 
-//    * While player still has hp and has yet to collect 3 keys, game continues;
-//    * Present current state to player
-//        * Ask user for desired action
-//    * Calculate result of action and update state of the world
-//    * Present the outcome of action to user
-
     System.out.println(monster.getName() + " wants to battle!");
 
-    while (monster.getHealth() != 0 | character.getHealth() != 0) {
+    while (monster.getHealth() >= 0 && character.getHealth() >= 0) {
 
       if (playerTurn) {
         System.out.println("Choose desired action (1: ATTACK!, 2:RUN!)");
@@ -57,7 +49,7 @@ public class DungeonMaster {
       }
       else{
         int damage = attackDamage();
-        monster.decreaseHealth(damage);
+        character.decreaseHealth(damage);
         System.out.println("Monster imposed " + damage + " to " +monster.getName());
       }
     }
