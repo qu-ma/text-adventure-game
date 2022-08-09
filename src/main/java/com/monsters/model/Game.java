@@ -2,18 +2,20 @@ package com.monsters.model;
 
 import java.sql.Statement;
 
+
 public class Game {
 
-  private int currentMonsterHP;
-  private int currentPlayerHP;
-  private int numberOfKeysPlayerHas;
+  public static final int ATTACK_MOVE = 1;
   private boolean firstMove;
-  public static String attack;
   public State state;
 
-public Game(State initialState){
+  public Monster monster;
+
+public Game(State initialState, Character character, Monster monster){
   this.firstMove = true;
   state = initialState;
+  this.monster = monster;
+
   }
 
 
