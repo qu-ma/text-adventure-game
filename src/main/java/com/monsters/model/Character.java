@@ -5,6 +5,8 @@ public class Character {
   private final String name;
   private int health = 100;
 
+  private int keys;
+
   public Character(String name) {
     this.name = name;
   }
@@ -31,4 +33,11 @@ public class Character {
     this.health = health;
   }
 
+  public int getKeys() {
+    return keys;
+  }
+
+  public void setKeys(int keys) {
+    this.keys = keys;
+  }
 }
