@@ -45,7 +45,7 @@ public class TextGamePresentation implements GamePresentation {
 
   @Override
   public Object characterStatusNotice(Game game, String character, String monster) {
-    return String.format();
+    return String.format(characterStatusPattern, game.getCharacterHealth(), game.getCharacterKeys());
   }
 
   @Override
