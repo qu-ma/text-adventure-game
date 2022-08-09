@@ -19,5 +19,16 @@ public class Character {
     this.health -= damage;
   }
 
+  public String getName() {
+    return name;
+  }
+
+  public int getHealth() {
+    return health;
+  }
+
+  public void setHealth(int health) {
+    this.health = health;
+  }
 
 }
