@@ -40,7 +40,7 @@ public class TextGamePresentation implements GamePresentation {
   public String stateRepresentation(Game game, String character, String monster) {
     String player = game.getState().isFinished() ? ((game.getState() == State.PLAYER_WIN) ? character : monster) : ((game.getState() == State.PLAYER_MOVE) ? character : monster);
     String next = game.getState().isFinished() ? String.format(winGamePattern, character) : String.format(playStatePattern, character);
-    return String.format(gameSummaryPattern, game.getCharacterHealth, game.getMonsterHealth, game.getCharacterKeys);
+    return String.format(gameSummaryPattern, game.getCharacterHealth(), game.getMonsterHealth(), game.getCharacterKeys());
   }
 
   @Override

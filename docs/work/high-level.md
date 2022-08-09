@@ -29,7 +29,7 @@
 //movePrompt
 //nextMoveNotice
 
-// FINISHED
+// DONE
 //stateRepresentation (character, game, monster) - Before and after a full round
 //Number of keys character has
 //Health of character
