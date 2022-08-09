@@ -41,6 +41,8 @@ public class Main {
       // Create game character
       Character character = new Character(name);
 
+      // Game(character, State)
+
       // Repeat character name back
       System.out.println("Let the journey begin " + character.getName());
 
