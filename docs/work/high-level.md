@@ -1,5 +1,6 @@
 # High Level Pseudo-Code
 
+
 * Generate world and monster
 * Let playing = true
 * While playing:
@@ -88,3 +89,6 @@ DONE
 
 //Method for gameWon: ()
 //
+
+## Main 
+// added the presentation class and initialize it

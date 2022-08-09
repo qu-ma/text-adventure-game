@@ -10,7 +10,7 @@ public abstract class AbstractMonster {
   public AbstractMonster(String name) {
     this.name = name;
     this.key = 1;
-    this.health = 100;
+    this.health = 25;
   }
 
   public abstract int attack(int damage);
