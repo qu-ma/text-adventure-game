@@ -9,6 +9,15 @@ public class Game {
   private int numberOfKeysPlayerHas;
   private boolean firstMove;
   public static String attack;
+  public State state;
+
+public Game(State initialState){
+  this.firstMove = true;
+  state = initialState;
+  }
+
+
+
 
 
   public enum State{
@@ -75,7 +84,7 @@ public class Game {
     }
 
     public State play(int currentMonsterHP, int currentPlayerHP, int attackPower, int numberOfKeysPlayerHolds){
-
+    return this.nextMoveState();
     }
 
   }
