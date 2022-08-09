@@ -1,6 +1,7 @@
 package com.monsters.view;
 
 import com.monsters.model.Game;
+import com.monsters.model.Game.State;
 import java.util.ResourceBundle;
 
 public class TextGamePresentation implements GamePresentation {
@@ -17,10 +18,12 @@ public class TextGamePresentation implements GamePresentation {
   private final String monsterNamePattern;
   private final String playerNamePattern;
   private final String illegalMovePattern;
+  private final String playStatePattern;
 
   public TextGamePresentation(ResourceBundle bundle) {
     characterStatusPattern = bundle.getString(Keys.CHARACTER_STATUS);
     gameSummaryPattern = bundle.getString(Keys.GAME_SUMMARY);
+    playStatePattern = bundle.getString(Keys.PLAY_STATE);
     nextMovePattern = bundle.getString(Keys.NEXT_MOVE);
     winRoundPattern = bundle.getString(Keys.WIN_ROUND);
     winGamePattern = bundle.getString(Keys.WIN_GAME);
@@ -33,11 +36,11 @@ public class TextGamePresentation implements GamePresentation {
     illegalMovePattern = bundle.getString(Keys.ILLEGAL_MOVE);
   }
 
-
-
   @Override
-  public Object stateRepresentation(Game game, String player, String monster) {
-    return null;
+  public String stateRepresentation(Game game, String character, String monster) {
+    String player = game.getState().isFinished() ? ((game.getState() == State.PLAYER_WIN) ? character : monster) : ((game.getState() == State.PLAYER_MOVE) ? character : monster);
+    String next = game.getState().isFinished() ? String.format(winGamePattern, character) : String.format(playStatePattern, character);
+    return String.format(gameSummaryPattern, game.getCharacterHealth(), game.getMonsterHealth(), game.getCharacterKeys());
   }
 
   @Override
@@ -56,7 +59,7 @@ public class TextGamePresentation implements GamePresentation {
   }
 
   @Override
-  public Object winRoundNotice(String playerName) {
+  public Object winRoundNotice(String characterName) {
     return null;
   }
 

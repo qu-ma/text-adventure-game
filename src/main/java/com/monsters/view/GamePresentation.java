@@ -4,23 +4,21 @@ import com.monsters.model.Game;
 
 public interface GamePresentation<T> {
 
-  T characterStatusNotice (Game game, String player, String monster);
+  T stateRepresentation(Game game, String character, String monster);
+
+  T characterStatusNotice (Game game, String character, String monster);
 
   T gameSummaryNotice();
 
-  Object stateRepresentation(Game game, String player, String monster);
+  T nextMoveNotice(String character);
 
-  T nextMoveNotice(String player);
-
-  T winRoundNotice(String playerName);
+  T winRoundNotice(String characterName);
 
   T winGameNotice();
 
   T lostGameNotice();
 
   T roundStartNotice();
-
-
 
   T movePresentation(String player);
 
