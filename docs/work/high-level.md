@@ -47,12 +47,25 @@
 
 
 ## //Game.java
+//! No Random number generator
+//!Changed lose and win entire game vs rounds
+//!On void play, need to find way of getting current actors health at that turn
+
+
 //HP, Number of Keys, character, monster, game, (Needed to pass to view)
 //Create Character reference
 //Create Monster reference
 //Initialize monster reference thats passed in
+
+DONE:
 //Create get health method for game objects to give to TextGamePresentation
 //Includes keys
+
+DONE
+//method getState
+//method getCharacterHealth
+//method getMonsterHealth
+//method getCharacterKeys
 
 ## //DungeonMaster.java
     //Fields
