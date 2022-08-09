@@ -3,7 +3,7 @@ package com.monsters.model;
 public class Monster extends AbstractMonster{
 
   public Monster(String name,String key) {
-    super(name, key);
+    super(name);
   }
 
   @Override

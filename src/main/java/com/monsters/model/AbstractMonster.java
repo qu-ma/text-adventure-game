@@ -4,12 +4,12 @@ public abstract class AbstractMonster {
 
   private String name;
   private int health;
-  private String key;
+  private int key;
 
 
-  public AbstractMonster(String name,String key) {
+  public AbstractMonster(String name) {
     this.name = name;
-    this.key = key;
+    this.key = 1;
     this.health = 100;
   }
 
@@ -29,12 +29,8 @@ public abstract class AbstractMonster {
     this.health = health;
   }
 
-  public String getKey() {
+  public int getKey() {
     return key;
-  }
-
-  public void setKey(String key) {
-    this.key = key;
   }
 
   public String getName() {
