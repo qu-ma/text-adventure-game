@@ -13,7 +13,6 @@ public class Game {
   //
   private int characterAttackDamage;
   private int monsterAttackDamage;
-  private String characterName;
   public static final int ATTACK_MOVE = 1;
   private boolean firstMove;
   private State state;
@@ -22,18 +21,30 @@ public class Game {
 
 
 public Game(State initialState, Character character, Monster monster){
-  this.firstMove = true;
+//  this.firstMove = true;
   state = initialState;
   this.monster = monster;
   this.character = character;
   }
 
-  public void play(int userMove) {
-    state = state.play(getCharacterHealth(), getMonsterHealth(), getCharacterKeys(), userMove);
-//    currentCount += move * direction.getSign(); Need to get the health of whichever characters turn it is at that moment
-    firstMove = false;
+////  public void play(int userMove, int attackDamage) {
+////    state = state.play(getCharacterHealth(), getMonsterHealth(), getCharacterKeys(), userMove);
+////    if(state.PLAYER_MOVE.isAtStart()){
+////      character.setHealth(character.getHealth() - attackDamage);
+////    }
+////    currentCount += move * direction.getSign(); Need to get the health of whichever characters turn it is at that moment
+//    firstMove = false;
+//  }
+  public void decreaseTargetHealth(int damage, String target){
+  if(target == "monster"){
+    monster.decreaseHealth(damage);
+    this.monsterAttackDamage = damage;
+  }else if(target == "character")
+   character.decreaseHealth(damage);
+  this.characterAttackDamage = damage;
   }
-public State getState(){
+
+  public State getState(){
   return state;
 }
 
@@ -49,13 +60,8 @@ public State getState(){
   public int getCharacterKeys() {
     return character.getKeys();
   }
-
   public String getCharacterName() {
-    return characterName;
-  }
-
-  public void setCharacterName(String characterName) {
-    this.characterName = characterName;
+    return character.getName();
   }
 
   public int getCharacterAttackDamage() {
