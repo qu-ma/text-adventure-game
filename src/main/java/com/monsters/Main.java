@@ -76,7 +76,7 @@ public class Main {
       }
 
       if (game.getCharacterKeys() == 3) {
-        presentation.winGameNotice();
+        presentation.winGameNotice(game.getCharacterName());
       }
 
     } catch (IOException e) {
