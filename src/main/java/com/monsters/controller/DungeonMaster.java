@@ -38,8 +38,6 @@ public class DungeonMaster {
     boolean victory = false;
     boolean playerTurn = true;
 
-    System.out.println(monster.getName() + " wants to battle!");
-
     System.out.println(presentation.roundStartNotice(monster.getName()));
 
     while (monster.getHealth() > 0 && character.getHealth() > 0) {
@@ -48,6 +46,7 @@ public class DungeonMaster {
         System.out.println("Choose desired action (a: ATTACK!, b:RUN!)");
         String response = reader.readLine().trim().toLowerCase();
         if (response.equals("b")) {
+          runFromBattle();
           break;
         }
         int damage = attackDamage();
@@ -97,6 +96,10 @@ public class DungeonMaster {
   public void generateNewMonster() {
     monster.setHealth(25);
     monster.setName(monsterList.get(game.getCharacterKeys()));
+  }
+
+  public void runFromBattle() {
+    System.out.println("Not to call you a coward, master, but sometimes, cowards do survive... - Starscream (From Transformers 2009)");
   }
 
 
