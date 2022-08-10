@@ -52,7 +52,7 @@ public class Main {
 
       // Create instance of game object (Model)
       Game.State state = Game.State.PLAYER_MOVE;
-      Monster monster = new Monster("Fire Monster", "Fire Key");
+      Monster monster = new Monster("Lord Toaster Child", "Key One");
       Game game = new Game(state, character, monster);
       // game.getCharacterName(character.getName());
 
