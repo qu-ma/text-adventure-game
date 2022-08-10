@@ -18,7 +18,6 @@ public class Main {
 
   public static void main(String[] args) {
 
-
     //  (                                              *
     // )\ )                                         (  `                 )
     //(()/(     (          (  (     (               )\))(      )      ( /(   (   (
@@ -62,7 +61,8 @@ public class Main {
       TextGamePresentation presentation = new TextGamePresentation(bundle);
 
       // Create an instance of the DungeonMaster class (Controller)
-      DungeonMaster dungeonMaster = new DungeonMaster(reader, monster, character, game, presentation);
+      DungeonMaster dungeonMaster = new DungeonMaster(reader, monster, character, game,
+          presentation);
 
       // Continue playing game until play has all three keys or
       while (continueGame(reader, character, game)) {
@@ -84,7 +84,6 @@ public class Main {
 
     }
   }
-
 
 
   private static boolean continueGame(BufferedReader reader, Character character, Game game)

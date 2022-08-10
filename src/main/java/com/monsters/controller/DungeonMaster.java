@@ -22,7 +22,8 @@ public class DungeonMaster {
   private final int MIN = 1;
   private final int MAX = 10;
 
-  private final ArrayList<String> monsterList = new ArrayList<>(List.of("Water Monster", "Lava Monster", "Generic Monster"));
+  private final ArrayList<String> monsterList = new ArrayList<>(
+      List.of("Water Monster", "Lava Monster", "Generic Monster"));
 
   public DungeonMaster(BufferedReader reader, Monster monster, Character character, Game game,
       TextGamePresentation presentation) {
@@ -44,7 +45,7 @@ public class DungeonMaster {
       if (playerTurn) {
         System.out.println("Choose desired action (a: ATTACK!, b:RUN!)");
         String response = reader.readLine().trim().toLowerCase();
-        if (response.equals("b")){
+        if (response.equals("b")) {
           gameOver();
         }
         int damage = attackDamage();
@@ -52,8 +53,7 @@ public class DungeonMaster {
         System.out.println("You imposed " + damage + " damage to " + monster.getName());
         System.out.println(monster.getName() + " current health " + game.getMonsterHealth());
         playerTurn = false;
-      }
-      else{
+      } else {
         int damage = attackDamage();
         character.decreaseHealth(damage);
         System.out.println("Monster imposed " + damage + " damage to " + character.getName());
@@ -62,7 +62,7 @@ public class DungeonMaster {
       }
     }
 
-    if (monster.getHealth() <= 0){
+    if (monster.getHealth() <= 0) {
       victory = true;
       battleWon();
       System.out.println("You are victorious!");
@@ -85,7 +85,7 @@ public class DungeonMaster {
   }
 
   public int attackDamage() {
-    int damage = (int)(Math.random()*(MAX-MIN+1)+MIN);
+    int damage = (int) (Math.random() * (MAX - MIN + 1) + MIN);
     return damage;
   }
 
