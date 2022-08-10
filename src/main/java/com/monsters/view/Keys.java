@@ -5,6 +5,7 @@ public abstract class Keys {
   public static final String CHARACTER_STATUS = "character_status";
   public static final String GAME_SUMMARY = "game_summary";
   public static final String NEXT_MOVE = "next_move";
+  public static final String RUN_AWAY = "run_away";
   public static final String WIN_ROUND = "win_round";
   public static final String WIN_GAME = "win_game";
   public static final String LOST_GAME = "lost_game";

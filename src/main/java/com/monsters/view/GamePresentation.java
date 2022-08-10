@@ -8,6 +8,7 @@ public interface GamePresentation<T> {
   T characterStatusNotice (Game game);
   T gameSummaryNotice(Game game);
   T nextMoveNotice(String playerName);
+  T runAwayNotice();
   T winRoundNotice(String characterName);
   T winGameNotice(String characterName);
   T lostGameNotice(String characterName);
