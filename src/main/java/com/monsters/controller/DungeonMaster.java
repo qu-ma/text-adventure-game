@@ -52,7 +52,9 @@ public class DungeonMaster {
         } else if (response.equals("a")) {
           int damage = attackDamage();
           game.decreaseTargetHealth(damage, "monster");
-          System.out.println(presentation.characterAttackReportNotice(game, game.getCharacterName(), game.getMonsterName()));
+          System.out.println(presentation.characterAttackReportNotice(game, game.getCharacterName(),
+              game.getMonsterName()));
+          // TODO
           System.out.println(game.getMonsterName() + " current health " + game.getMonsterHealth());
           playerTurn = false;
         } else {
@@ -64,7 +66,8 @@ public class DungeonMaster {
         System.out.println(presentation.nextMoveNotice(game.getMonsterName()));
         int damage = attackDamage();
         game.decreaseTargetHealth(damage, "character");
-        System.out.println(presentation.monsterAttackReportNotice(game, game.getMonsterName(), game.getCharacterName()));
+        System.out.println(presentation.monsterAttackReportNotice(game, game.getMonsterName(),
+            game.getCharacterName()));
         System.out.println(presentation.characterStatusNotice(game));
         playerTurn = true;
       }
@@ -83,17 +86,17 @@ public class DungeonMaster {
   }
 
   private void battleWon() {
+    // TODO
     character.setKeys(character.getKeys() + 1);
     System.out.println(
         presentation.winRoundNotice(character.getName())); // game.getCharacterName();
   }
 
   public void gameOver() {
-    System.out.println(presentation.lostGameNotice(character.getName()));
+    System.out.println(presentation.lostGameNotice(game.getCharacterName()));
   }
 
   public void gameWon() {
-    // TODO
   }
 
   public int attackDamage() {
@@ -102,8 +105,10 @@ public class DungeonMaster {
   }
 
   public void generateNewMonster() {
+    // TODO
     monster.setHealth(25);
     monster.setName(monsterList.get(game.getCharacterKeys()));
+    // game.generateNewMonster(25, monsterList.get(game.getCharacterKeys()));
   }
 
   public void runFromBattle() {
