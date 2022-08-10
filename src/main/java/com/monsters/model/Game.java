@@ -6,6 +6,13 @@ import java.sql.Statement;
 
 
 public class Game {
+//Two additional fields for damage
+  //monster damage
+  //character damage
+  //Both coming from controller class.
+  //
+  private int characterAttackDamage;
+  private int monsterAttackDamage;
 
   public static final int ATTACK_MOVE = 1;
   private boolean firstMove;
@@ -30,6 +37,7 @@ public State getState(){
   return state;
 }
 
+  //Add setters for these from Controller class. Should go controller > Game > Monster/Character
   public int getMonsterHealth() {
     return monster.getHealth();
   }
@@ -40,6 +48,22 @@ public State getState(){
 
   public int getCharacterKeys() {
     return character.getKeys();
+  }
+
+  public int getCharacterAttackDamage() {
+    return characterAttackDamage;
+  }
+
+  public void setCharacterAttackDamage(int characterAttackDamage) {
+    this.characterAttackDamage = characterAttackDamage;
+  }
+
+  public int getMonsterAttackDamage() {
+    return monsterAttackDamage;
+  }
+
+  public void setMonsterAttackDamage(int monsterAttackDamage) {
+    this.monsterAttackDamage = monsterAttackDamage;
   }
 
   public enum State{
