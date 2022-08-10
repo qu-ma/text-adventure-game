@@ -1,5 +1,6 @@
 package com.monsters;
 
+import com.monsters.controller.DungeonMaster;
 import com.monsters.model.Game;
 import com.monsters.model.Game.State;
 import com.monsters.model.Monster;
@@ -41,7 +42,7 @@ public class Main {
       boolean play = true;
 
       // Get the name of the main character
-      System.out.println("Welcome to Key Master! Your task, should you choose to accept it"
+      System.out.println("Welcome to Dungeon Master! Your task, should you choose to accept it"
           + "is to destroy all monsters and collect their keys.\n");
       System.out.println("What is your name hero?");
       String name = reader.readLine().trim();
@@ -52,19 +53,25 @@ public class Main {
       // Repeat character name back
       System.out.println("Let the journey begin " + character.getName());
 
-      // Create instance of game object
+      // Create instance of game object (Model)
       Game.State state = Game.State.PLAYER_MOVE;
-      Game game = new Game(state, character, new Monster("Fire Monster", "Fire Key"));
+      Monster monster = new Monster("Fire Monster", "Fire Key");
+      Game game = new Game(state, character, monster);
 
-      // Create instance of TextGamePresentation
+      // Create instance of TextGamePresentation (View)
       TextGamePresentation presentation = new TextGamePresentation(bundle);
 
-      // While playing
+      // Create an instance of the DungeonMaster class (Controller)
+      DungeonMaster dungeonMaster = new DungeonMaster(reader, monster, character, game, presentation);
+
+      // Continue playing game until play has all three keys or
       while (continueGame(reader, character, game)) {
 
         // Initiate player state in the world
 
         // Player movement and state updates
+
+        dungeonMaster.battleMonster();
 
       }
 
@@ -79,18 +86,20 @@ public class Main {
   }
 
 
+
   private static boolean continueGame(BufferedReader reader, Character character, Game game)
       throws IOException {
     boolean status = true;
 
-    if (character.getHealth() <= 0) {
+    if (character.getHealth() <= 0 || character.getKeys() == 3) {
       status = false;
     }
 
-//    System.out.println("Would you like to continue (y/n)?");
-//    String response = reader.readLine().trim().toLowerCase();
-//    response.equals("y");
-    return true;
+    System.out.println("Would you like to continue (y/n)?");
+    String response = reader.readLine().trim().toLowerCase();
+    response.equals("y");
+
+    return status;
   }
 
 }

@@ -69,7 +69,7 @@ DONE
 //method getMonsterHealth
 //method getCharacterKeys
 
-## //DungeonMaster.java
+## DungeonMaster.java
     //Fields
     //Buffer reader - to read stuff from console
     //Character name
