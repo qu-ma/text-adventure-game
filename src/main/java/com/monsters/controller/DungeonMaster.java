@@ -38,9 +38,9 @@ public class DungeonMaster {
     boolean victory = false;
     boolean playerTurn = true;
 
-    System.out.print(presentation.roundStartNotice(monster.getName()));
+    System.out.print(presentation.roundStartNotice(game.getMonsterName()));
 
-    while (monster.getHealth() > 0 && character.getHealth() > 0) {
+    while (game.getMonsterHealth() > 0 && game.getCharacterHealth() > 0) {
 
       if (playerTurn) {
         System.out.println(presentation.nextMoveNotice(game.getCharacterName())
@@ -51,31 +51,26 @@ public class DungeonMaster {
           break;
         } else if (response.equals("a")) {
           int damage = attackDamage();
-          monster.decreaseHealth(damage);
-          game.setCharacterAttackDamage(damage);
-          System.out.println("You imposed " + damage + " damage to " + monster.getName());
-          System.out.println(monster.getName() + " current health " + game.getMonsterHealth());
+          game.decreaseTargetHealth(damage, "monster");
+          System.out.println(presentation.characterAttackReportNotice(game, game.getCharacterName(), game.getMonsterName()));
+          System.out.println(game.getMonsterName() + " current health " + game.getMonsterHealth());
           playerTurn = false;
         } else {
-          System.out.println("Illegal move!");
-          System.out.println(presentation.illegalMoveNotification(game));
+          System.out.println(presentation.illegalMoveNotification());
         }
 
 
       } else {
-        System.out.println(presentation.nextMoveNotice(monster.getName()));
+        System.out.println(presentation.nextMoveNotice(game.getMonsterName()));
         int damage = attackDamage();
-        character.decreaseHealth(damage);
-        game.setMonsterAttackDamage(damage);
-        System.out.println(presentation.monsterAttackReportNotice(game, monster.getName(), character.getName()));
-        //System.out.println("Monster imposed " + damage + " damage to " + character.getName());
-        //System.out.println(character.getName() + " current health " + game.getCharacterHealth());
+        game.decreaseTargetHealth(damage, "character");
+        System.out.println(presentation.monsterAttackReportNotice(game, game.getMonsterName(), game.getCharacterName()));
         System.out.println(presentation.characterStatusNotice(game));
         playerTurn = true;
       }
     }
 
-    if (monster.getHealth() <= 0) {
+    if (game.getMonsterHealth() <= 0) {
       victory = true;
       battleWon();
       System.out.println("You are victorious!");
@@ -94,7 +89,7 @@ public class DungeonMaster {
   }
 
   public void gameOver() {
-    Object object = presentation.lostGameNotice(character.getName());
+    System.out.println(presentation.lostGameNotice(character.getName()));
   }
 
   public void gameWon() {
