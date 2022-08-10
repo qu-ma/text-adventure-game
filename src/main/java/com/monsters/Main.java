@@ -65,15 +65,9 @@ public class Main {
       DungeonMaster dungeonMaster = new DungeonMaster(reader, monster, character, game,
           presentation);
 
-      // Continue playing game until play has all three keys or
+      // Continue playing game until play has all three keys or player decides to quit
       while (continueGame(reader, character, game)) {
-
-        // Initiate player state in the world
-
-        // Player movement and state updates
-
         dungeonMaster.battleMonster();
-
       }
 
       System.out.println(character.getName() + " has acquired " + game.getCharacterKeys() + " number of keys.");
