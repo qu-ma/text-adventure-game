@@ -18,15 +18,13 @@ public class Main {
 
   public static void main(String[] args) {
 
-    //  (                                              *
-    // )\ )                                         (  `                 )
-    //(()/(     (          (  (     (               )\))(      )      ( /(   (   (
-    // /(_))   ))\   (     )\))(   ))\  (    (     ((_)()\  ( /(  (   )\()) ))\  )(
-    //(_))_   /((_)  )\ ) ((_))\  /((_) )\   )\ )  (_()((_) )(_)) )\ (_))/ /((_)(()\
-    // |   \ (_))(  _(_/(  (()(_)(_))  ((_) _(_/(  |  \/  |((_)_ ((_)| |_ (_))   ((_)
-    // | |) || || || ' \))/ _` | / -_)/ _ \| ' \)) | |\/| |/ _` |(_-<|  _|/ -_) | '_|
-    // |___/  \_,_||_||_| \__, | \___|\___/|_||_|  |_|  |_|\__,_|/__/ \__|\___| |_|
-    //                    |___/
+    System.out.println("  ######                                              #     #");
+    System.out.println(" #     # #    # #    #  ####  ######  ####  #    #    ##   ##   ##    ####  ##### ###### #####");
+    System.out.println(" #     # #    # ##   # #    # #      #    # ##   #    # # # #  #  #  #        #   #      #    #");
+    System.out.println(" #     # #    # # #  # #      #####  #    # # #  #    #  #  # #    #  ####    #   #####  #    #");
+    System.out.println(" #     # #    # #  # # #  ### #      #    # #  # #    #     # ######      #   #   #      #####");
+    System.out.println(" #     # #    # #   ## #    # #      #    # #   ##    #     # #    # #    #   #   #      #   #");
+    System.out.println(" ######   ####  #    #  ####  ######  ####  #    #    #     # #    #  ####    #   ###### #    #");
 
     ResourceBundle bundle = ResourceBundle.getBundle(BUNDLE_NAME);
 
@@ -56,7 +54,7 @@ public class Main {
       Game.State state = Game.State.PLAYER_MOVE;
       Monster monster = new Monster("Fire Monster", "Fire Key");
       Game game = new Game(state, character, monster);
-      game.setCharacterName(character.getName());
+      // game.getCharacterName(character.getName());
 
       // Create instance of TextGamePresentation (View)
       TextGamePresentation presentation = new TextGamePresentation(bundle);
@@ -70,7 +68,8 @@ public class Main {
         dungeonMaster.battleMonster();
       }
 
-      System.out.println(character.getName() + " has acquired " + game.getCharacterKeys() + " number of keys.");
+      System.out.println(
+          character.getName() + " has acquired " + game.getCharacterKeys() + " number of keys.");
 
       if (game.getCharacterKeys() == 3) {
         System.out.println(presentation.winGameNotice(game.getCharacterName()));
