@@ -44,6 +44,10 @@ public Game(State initialState, Character character, Monster monster){
   this.characterAttackDamage = damage;
   }
 
+  public void generateNewMonster(int health, String name){
+    monster.setHealth(health);
+    monster.setName(name);
+  }
   public State getState(){
   return state;
 }
