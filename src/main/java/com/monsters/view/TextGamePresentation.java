@@ -22,6 +22,7 @@ public class TextGamePresentation implements GamePresentation {
   private final String playerNamePattern;
   private final String playAgainPattern;
   private final String illegalMovePattern;
+  private final String illegalResponsePattern;
   private final String playStatePattern;
 
   public TextGamePresentation(ResourceBundle bundle) {
@@ -42,6 +43,7 @@ public class TextGamePresentation implements GamePresentation {
     playerNamePattern = bundle.getString(Keys.PLAYER_NAME);
     playAgainPattern = bundle.getString(Keys.PLAY_AGAIN);
     illegalMovePattern = bundle.getString(Keys.ILLEGAL_MOVE);
+    illegalResponsePattern = bundle.getString(Keys.ILLEGAL_RESPONSE);
   }
 
   @Override
@@ -119,5 +121,10 @@ public class TextGamePresentation implements GamePresentation {
   @Override
   public Object illegalMoveNotification() {
     return String.format(illegalMovePattern);
+  }
+
+  @Override
+  public Object illegalResponseNotification() {
+    return String.format(illegalResponsePattern);
   }
 }
