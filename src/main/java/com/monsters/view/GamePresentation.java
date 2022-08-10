@@ -19,4 +19,5 @@ public interface GamePresentation<T> {
   T movePrompt(Game game);
   T playAgainPrompt();
   T illegalMoveNotification();
+  T illegalResponseNotification();
 }

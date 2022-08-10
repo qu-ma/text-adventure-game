@@ -18,6 +18,7 @@ public abstract class Keys {
   public static final String MONSTER_NAME = "monster_name";
   public static final String PLAYER_NAME = "player_name";
   public static final String ILLEGAL_MOVE = "illegal_move";
+  public static final String ILLEGAL_RESPONSE = "illegal_response";
   public static final String PLAY_AGAIN = "play_again";
   public static final String NEGATIVE_RESPONSE = "negative_response";
 
