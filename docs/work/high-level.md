@@ -1,5 +1,6 @@
 # High Level Pseudo-Code
 
+
 * Generate world and monster
 * Let playing = true
 * While playing:
@@ -68,7 +69,7 @@ DONE
 //method getMonsterHealth
 //method getCharacterKeys
 
-## //DungeonMaster.java
+## DungeonMaster.java
     //Fields
     //Buffer reader - to read stuff from console
     //Character name
@@ -88,3 +89,6 @@ DONE
 
 //Method for gameWon: ()
 //
+
+## Main 
+// added the presentation class and initialize it

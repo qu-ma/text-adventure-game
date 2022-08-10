@@ -1,25 +1,34 @@
 package com.monsters;
 
+import com.monsters.controller.DungeonMaster;
+import com.monsters.model.Game;
+import com.monsters.model.Game.State;
+import com.monsters.model.Monster;
+import com.monsters.view.TextGamePresentation;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import com.monsters.model.Character;
+import java.util.ResourceBundle;
 
 public class Main {
 
+  private static final String BUNDLE_NAME = "strings";
+
   public static void main(String[] args) {
 
-    //      )                *
-    //  ( /(              (  `                 )
-    //  )\())  (   (      )\))(      )      ( /(   (   (
-    //|((_)\  ))\  )\ )  ((_)()\  ( /(  (   )\()) ))\  )(
-    //|_ ((_)/((_)(()/(  (_()((_) )(_)) )\ (_))/ /((_)(()\
-    //| |/ /(_))   )(_)) |  \/  |((_)_ ((_)| |_ (_))   ((_)
-    //  ' < / -_) | || | | |\/| |/ _` |(_-<|  _|/ -_) | '_|
-    // _|\_\\___|  \_, | |_|  |_|\__,_|/__/ \__|\___| |_|
-    //             |__/
+    //  (                                              *
+    // )\ )                                         (  `                 )
+    //(()/(     (          (  (     (               )\))(      )      ( /(   (   (
+    // /(_))   ))\   (     )\))(   ))\  (    (     ((_)()\  ( /(  (   )\()) ))\  )(
+    //(_))_   /((_)  )\ ) ((_))\  /((_) )\   )\ )  (_()((_) )(_)) )\ (_))/ /((_)(()\
+    // |   \ (_))(  _(_/(  (()(_)(_))  ((_) _(_/(  |  \/  |((_)_ ((_)| |_ (_))   ((_)
+    // | |) || || || ' \))/ _` | / -_)/ _ \| ' \)) | |\/| |/ _` |(_-<|  _|/ -_) | '_|
+    // |___/  \_,_||_||_| \__, | \___|\___/|_||_|  |_|  |_|\__,_|/__/ \__|\___| |_|
+    //                    |___/
 
+    ResourceBundle bundle = ResourceBundle.getBundle(BUNDLE_NAME);
 
     try (
         Reader input = new InputStreamReader(System.in);
@@ -32,32 +41,42 @@ public class Main {
       boolean play = true;
 
       // Get the name of the main character
-      System.out.println("Welcome to Key Master! Your task, should you choose to accept it"
+      System.out.println("Welcome to Dungeon Master! Your task, should you choose to accept it"
           + "is to destroy all monsters and collect their keys.\n");
-      play = continueGame(reader);
       System.out.println("What is your name hero?");
       String name = reader.readLine().trim();
 
       // Create game character
       Character character = new Character(name);
 
-      // Game(character, State)
-
       // Repeat character name back
       System.out.println("Let the journey begin " + character.getName());
 
-      // Create instance of game object
+      // Create instance of game object (Model)
+      Game.State state = Game.State.PLAYER_MOVE;
+      Monster monster = new Monster("Fire Monster", "Fire Key");
+      Game game = new Game(state, character, monster);
 
-      // While playing
-      while(play) {
+      // Create instance of TextGamePresentation (View)
+      TextGamePresentation presentation = new TextGamePresentation(bundle);
+
+      // Create an instance of the DungeonMaster class (Controller)
+      DungeonMaster dungeonMaster = new DungeonMaster(reader, monster, character, game,
+          presentation);
+
+      // Continue playing game until play has all three keys or
+      while (continueGame(reader, character, game)) {
 
         // Initiate player state in the world
 
         // Player movement and state updates
 
+        dungeonMaster.battleMonster();
 
-        play = continueGame(reader);
+      }
 
+      if (game.getCharacterKeys() == 3) {
+        presentation.winGameNotice(game.getCharacterName());
       }
 
     } catch (IOException e) {
@@ -67,10 +86,19 @@ public class Main {
   }
 
 
-  private static boolean continueGame(BufferedReader reader) throws IOException {
+  private static boolean continueGame(BufferedReader reader, Character character, Game game)
+      throws IOException {
+    boolean status = true;
+
+    if (character.getHealth() <= 0 || character.getKeys() == 3) {
+      status = false;
+    }
+
     System.out.println("Would you like to continue (y/n)?");
     String response = reader.readLine().trim().toLowerCase();
-    return response.equals("y");
+    response.equals("y");
+
+    return status;
   }
 
 }
