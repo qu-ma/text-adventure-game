@@ -50,7 +50,7 @@ public class Main {
       Character character = new Character(name);
 
       // Repeat character name back
-      System.out.println("Let the journey begin " + character.getName());
+      System.out.println("Let the journey begin " + character.getName() + "!");
 
       // Create instance of game object (Model)
       Game.State state = Game.State.PLAYER_MOVE;
