@@ -82,12 +82,12 @@ public class TextGamePresentation implements GamePresentation {
 
   @Override
   public Object characterAttackReportNotice(Game game, String characterName, String monsterName) {
-    return String.format(characterAttackReportPattern, characterName, "game.getMonsterAttack()", monsterName);
+    return String.format(characterAttackReportPattern, characterName, game.getCharacterAttackDamage(), monsterName);
   }
 
   @Override
   public Object monsterAttackReportNotice(Game game, String monsterName, String characterName) {
-    return String.format(monsterAttackReportPattern, monsterName, "game.getMonsterAttack()", characterName);
+    return String.format(monsterAttackReportPattern, monsterName, game.getMonsterAttackDamage(), characterName);
   }
 
   @Override
