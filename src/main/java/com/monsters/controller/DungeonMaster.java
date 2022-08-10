@@ -4,6 +4,7 @@ package com.monsters.controller;
 import com.monsters.model.Character;
 import com.monsters.model.Game;
 import com.monsters.model.Monster;
+import com.monsters.model.exception.IllegalMoveException;
 import com.monsters.view.TextGamePresentation;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -34,7 +35,7 @@ public class DungeonMaster {
     this.presentation = presentation;
   }
 
-  public boolean battleMonster() throws IOException {
+  public boolean battleMonster() throws IOException, IllegalMoveException {
     boolean victory = false;
     boolean playerTurn = true;
 
@@ -43,8 +44,7 @@ public class DungeonMaster {
     while (game.getMonsterHealth() > 0 && game.getCharacterHealth() > 0) {
 
       if (playerTurn) {
-        System.out.println(presentation.nextMoveNotice(game.getCharacterName())
-            + "Choose desired action (a: ATTACK!, b:RUN!)");
+        System.out.println(presentation.nextMoveNotice(game.getCharacterName()));
         String response = reader.readLine().trim().toLowerCase();
         if (response.equals("b")) {
           runFromBattle();
@@ -59,6 +59,7 @@ public class DungeonMaster {
           playerTurn = false;
         } else {
           System.out.println(presentation.illegalMoveNotification());
+          throw new IllegalMoveException((String) presentation.illegalMoveNotification());
         }
 
 
