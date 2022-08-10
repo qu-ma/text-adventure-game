@@ -52,6 +52,7 @@ public class DungeonMaster {
         } else if (response.equals("a")) {
           int damage = attackDamage();
           monster.decreaseHealth(damage);
+          game.setCharacterAttackDamage(damage);
           System.out.println("You imposed " + damage + " damage to " + monster.getName());
           System.out.println(monster.getName() + " current health " + game.getMonsterHealth());
           playerTurn = false;
@@ -65,10 +66,11 @@ public class DungeonMaster {
         System.out.println(presentation.nextMoveNotice(monster.getName()));
         int damage = attackDamage();
         character.decreaseHealth(damage);
-        // System.out.println(presentation.monsterAttackReportNotice(game, game.getCharacterName(), monster.getName()));
-        System.out.println("Monster imposed " + damage + " damage to " + character.getName());
-        System.out.println(character.getName() + " current health " + game.getCharacterHealth());
-        // System.out.println(presentation.characterStatusNotice(game));
+        game.setMonsterAttackDamage(damage);
+        System.out.println(presentation.monsterAttackReportNotice(game, monster.getName(), character.getName()));
+        //System.out.println("Monster imposed " + damage + " damage to " + character.getName());
+        //System.out.println(character.getName() + " current health " + game.getCharacterHealth());
+        System.out.println(presentation.characterStatusNotice(game));
         playerTurn = true;
       }
     }
