@@ -56,6 +56,7 @@ public class Main {
       Game.State state = Game.State.PLAYER_MOVE;
       Monster monster = new Monster("Fire Monster", "Fire Key");
       Game game = new Game(state, character, monster);
+      game.setCharacterName(character.getName());
 
       // Create instance of TextGamePresentation (View)
       TextGamePresentation presentation = new TextGamePresentation(bundle);
@@ -75,9 +76,14 @@ public class Main {
 
       }
 
+      System.out.println(character.getName() + " has acquired " + game.getCharacterKeys() + " number of keys.");
+
       if (game.getCharacterKeys() == 3) {
-        presentation.winGameNotice(game.getCharacterName());
+        System.out.println(presentation.winGameNotice(game.getCharacterName()));
+      } else {
+        System.out.println(presentation.lostGameNotice(game.getCharacterName()));
       }
+
 
     } catch (IOException e) {
       // Ignore exception for now
@@ -92,11 +98,11 @@ public class Main {
 
     if (character.getHealth() <= 0 || character.getKeys() == 3) {
       status = false;
+    } else {
+      System.out.println("Would you like to continue (y/n)?");
+      String response = reader.readLine().trim().toLowerCase();
+      status = response.equals("y");
     }
-
-    System.out.println("Would you like to continue (y/n)?");
-    String response = reader.readLine().trim().toLowerCase();
-    response.equals("y");
 
     return status;
   }
