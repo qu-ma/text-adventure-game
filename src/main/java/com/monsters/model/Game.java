@@ -60,6 +60,9 @@ public Game(State initialState, Character character, Monster monster){
   public int getCharacterKeys() {
     return character.getKeys();
   }
+  public void increaseKeys(){
+    character.setKeys(character.getKeys() + 1);
+  }
   public String getCharacterName() {
     return character.getName();
   }
