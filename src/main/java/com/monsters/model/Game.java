@@ -6,7 +6,8 @@ import java.sql.Statement;
 
 
 public class Game {
-//Two additional fields for damage
+
+  //Two additional fields for damage
   //monster damage
   //character damage
   //Both coming from controller class.
@@ -20,14 +21,14 @@ public class Game {
   public Character character;
 
 
-public Game(State initialState, Character character, Monster monster){
+  public Game(State initialState, Character character, Monster monster) {
 //  this.firstMove = true;
-  state = initialState;
-  this.monster = monster;
-  this.character = character;
+    state = initialState;
+    this.monster = monster;
+    this.character = character;
   }
 
-////  public void play(int userMove, int attackDamage) {
+  ////  public void play(int userMove, int attackDamage) {
 ////    state = state.play(getCharacterHealth(), getMonsterHealth(), getCharacterKeys(), userMove);
 ////    if(state.PLAYER_MOVE.isAtStart()){
 ////      character.setHealth(character.getHealth() - attackDamage);
@@ -35,18 +36,19 @@ public Game(State initialState, Character character, Monster monster){
 ////    currentCount += move * direction.getSign(); Need to get the health of whichever characters turn it is at that moment
 //    firstMove = false;
 //  }
-  public void decreaseTargetHealth(int damage, String target){
-  if(target == "monster"){
-    monster.decreaseHealth(damage);
-    this.monsterAttackDamage = damage;
-  }else if(target == "character")
-   character.decreaseHealth(damage);
-  this.characterAttackDamage = damage;
+  public void decreaseTargetHealth(int damage, String target) {
+    if (target == "monster") {
+      monster.decreaseHealth(damage);
+      this.monsterAttackDamage = damage;
+    } else if (target == "character") {
+      character.decreaseHealth(damage);
+    }
+    this.characterAttackDamage = damage;
   }
 
-  public State getState(){
-  return state;
-}
+  public State getState() {
+    return state;
+  }
 
   //Add setters for these from Controller class. Should go controller > Game > Monster/Character
   public int getMonsterHealth() {
@@ -60,13 +62,15 @@ public Game(State initialState, Character character, Monster monster){
   public int getCharacterKeys() {
     return character.getKeys();
   }
+
   public String getCharacterName() {
     return character.getName();
   }
 
-  public String getMonsterName(){
-  return monster.getName();
+  public String getMonsterName() {
+    return monster.getName();
   }
+
 
   public int getCharacterAttackDamage() {
     return characterAttackDamage;
@@ -84,58 +88,68 @@ public Game(State initialState, Character character, Monster monster){
     this.monsterAttackDamage = monsterAttackDamage;
   }
 
-  public enum State{
-    PLAYER_MOVE{
+  public enum State {
+    PLAYER_MOVE {
       @Override
-      public boolean isAtStart(){
+      public boolean isAtStart() {
         return true;
       }
+
       @Override
-      public boolean isFinished(){
+      public boolean isFinished() {
         return false;
       }
+
       @Override
-      public State nextMoveState(){
+      public State nextMoveState() {
         return MONSTER_MOVE;
       }
+
       @Override
-      public State nextWinEntireGameState(){
+      public State nextWinEntireGameState() {
         return MONSTER_WIN;
       }
+
       @Override
-      public State nextLostState(){
+      public State nextLostState() {
         return MONSTER_WIN;
       }
+
       @Override
-      public State nextWinRoundState(){
+      public State nextWinRoundState() {
         return MONSTER_WIN;
       }
 
     },
 
-    MONSTER_MOVE{
+    MONSTER_MOVE {
       @Override
-      public boolean isAtStart(){
+      public boolean isAtStart() {
         return true;
       }
+
       @Override
-      public boolean isFinished(){
+      public boolean isFinished() {
         return false;
       }
+
       @Override
-      public State nextMoveState(){
+      public State nextMoveState() {
         return PLAYER_MOVE;
       }
+
       @Override
-      public State nextWinEntireGameState(){
+      public State nextWinEntireGameState() {
         return PLAYER_WIN;
       }
+
       @Override
-      public State nextLostState(){
+      public State nextLostState() {
         return PLAYER_WIN;
       }
+
       @Override
-      public State nextWinRoundState(){
+      public State nextWinRoundState() {
         return PLAYER_WIN;
       }
 
@@ -148,56 +162,56 @@ public Game(State initialState, Character character, Monster monster){
     private static final String NO_MOVES_ALLOWED_FORMAT = "Game is already in a finished state (HP = %d); no further moves possible";
     private static final String INVALID_MOVE = "This move is not an option.";
 
-    public boolean isAtStart(){
+    public boolean isAtStart() {
       return false;
     }
 
-    public boolean isFinished(){
+    public boolean isFinished() {
       return false;
     }
 
-    public State nextMoveState(){
+    public State nextMoveState() {
       return null;
     }
 
-    public State nextWinEntireGameState(){
-      return this;
-    }
-    public State nextLostState(){
+    public State nextWinEntireGameState() {
       return this;
     }
 
-    public State nextWinRoundState(){
+    public State nextLostState() {
+      return this;
+    }
+
+    public State nextWinRoundState() {
       return this;
     }
 
 
     //Still no random number generator for attack strength
-      public State play(int characterHealth, int monsterHealth, int keysCharacterHas, int userMove)
+    public State play(int characterHealth, int monsterHealth, int keysCharacterHas, int userMove)
         throws GameFinishedException, IllegalMoveException {
-        State nextState = null;
-        if (isFinished()) {
-          throw new GameFinishedException(String.format(NO_MOVES_ALLOWED_FORMAT, characterHealth));
-        }
-        if (ATTACK_MOVE != userMove) {
-          throw new IllegalMoveException(
-              String.format(INVALID_MOVE, userMove));
-        }
+      State nextState = null;
+      if (isFinished()) {
+        throw new GameFinishedException(String.format(NO_MOVES_ALLOWED_FORMAT, characterHealth));
+      }
+      if (ATTACK_MOVE != userMove) {
+        throw new IllegalMoveException(
+            String.format(INVALID_MOVE, userMove));
+      }
 //        int newCount = count + move * sign;
 
-        if (characterHealth > 0 && monsterHealth <= 0) {
-          nextState = nextWinRoundState();
-        } else if(characterHealth > 0 && monsterHealth > 0){
-          nextState = nextMoveState();
-        }else if(characterHealth <= 0){
-          nextState = nextLostState();
-        }else if(keysCharacterHas == 3){
-          nextState = nextWinEntireGameState();
-        }
-
-        return nextState;
+      if (characterHealth > 0 && monsterHealth <= 0) {
+        nextState = nextWinRoundState();
+      } else if (characterHealth > 0 && monsterHealth > 0) {
+        nextState = nextMoveState();
+      } else if (characterHealth <= 0) {
+        nextState = nextLostState();
+      } else if (keysCharacterHas == 3) {
+        nextState = nextWinEntireGameState();
       }
 
+      return nextState;
+    }
 
 
   }

@@ -56,7 +56,7 @@ public class Main {
       Game.State state = Game.State.PLAYER_MOVE;
       Monster monster = new Monster("Fire Monster", "Fire Key");
       Game game = new Game(state, character, monster);
-      game.setCharacterName(character.getName());
+      // game.getCharacterName(character.getName());
 
       // Create instance of TextGamePresentation (View)
       TextGamePresentation presentation = new TextGamePresentation(bundle);
