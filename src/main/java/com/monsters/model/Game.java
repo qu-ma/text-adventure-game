@@ -64,6 +64,10 @@ public Game(State initialState, Character character, Monster monster){
     return character.getName();
   }
 
+  public String getMonsterName(){
+  return monster.getName();
+  }
+
   public int getCharacterAttackDamage() {
     return characterAttackDamage;
   }
