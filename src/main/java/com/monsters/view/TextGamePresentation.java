@@ -9,12 +9,14 @@ public class TextGamePresentation implements GamePresentation {
   private final String characterStatusPattern;
   private final String gameSummaryPattern;
   private final String nextMovePattern;
+  private final String runAwayPattern;
   private final String winRoundPattern;
   private final String winGamePattern;
   private final String lostGamePattern;
   private final String roundStartPattern;
   private final String characterAttackReportPattern;
   private final String monsterAttackReportPattern;
+  private final String monsterHealthReportPattern;
   private final String movePromptPattern;
   private final String monsterNamePattern;
   private final String playerNamePattern;
@@ -27,12 +29,14 @@ public class TextGamePresentation implements GamePresentation {
     gameSummaryPattern = bundle.getString(Keys.GAME_SUMMARY);
     playStatePattern = bundle.getString(Keys.PLAY_STATE);
     nextMovePattern = bundle.getString(Keys.NEXT_MOVE);
+    runAwayPattern = bundle.getString(Keys.RUN_AWAY);
     winRoundPattern = bundle.getString(Keys.WIN_ROUND);
     winGamePattern = bundle.getString(Keys.WIN_GAME);
     lostGamePattern = bundle.getString(Keys.LOST_GAME);
     roundStartPattern = bundle.getString(Keys.ROUND_START);
     characterAttackReportPattern = bundle.getString(Keys.CHARACTER_ATTACK_REPORT);
     monsterAttackReportPattern = bundle.getString(Keys.MONSTER_ATTACK_REPORT);
+    monsterHealthReportPattern = bundle.getString(Keys.MONSTER_HEALTH_REPORT);
     movePromptPattern = bundle.getString(Keys.MOVE_PROMPT);
     monsterNamePattern = bundle.getString(Keys.MONSTER_NAME);
     playerNamePattern = bundle.getString(Keys.PLAYER_NAME);
@@ -63,6 +67,11 @@ public class TextGamePresentation implements GamePresentation {
   }
 
   @Override
+  public Object runAwayNotice() {
+    return String.format(runAwayPattern);
+  }
+
+  @Override
   public Object winRoundNotice(String characterName) {
     return String.format(winRoundPattern, characterName);
   }
@@ -90,6 +99,11 @@ public class TextGamePresentation implements GamePresentation {
   @Override
   public Object monsterAttackReportNotice(Game game, String monsterName, String characterName) {
     return String.format(monsterAttackReportPattern, monsterName, game.getMonsterAttackDamage(), characterName);
+  }
+
+  @Override
+  public Object monsterHealthReport(String monsterName, Game game) {
+    return String.format(monsterHealthReportPattern, monsterName, game.getMonsterHealth());
   }
 
   @Override
