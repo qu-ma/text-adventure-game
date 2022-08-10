@@ -13,7 +13,7 @@ public class Game {
   //
   private int characterAttackDamage;
   private int monsterAttackDamage;
-
+  private String characterName;
   public static final int ATTACK_MOVE = 1;
   private boolean firstMove;
   private State state;
@@ -48,6 +48,14 @@ public State getState(){
 
   public int getCharacterKeys() {
     return character.getKeys();
+  }
+
+  public String getCharacterName() {
+    return characterName;
+  }
+
+  public void setCharacterName(String characterName) {
+    this.characterName = characterName;
   }
 
   public int getCharacterAttackDamage() {
