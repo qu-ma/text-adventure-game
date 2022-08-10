@@ -58,8 +58,12 @@ public class DungeonMaster {
           System.out.println(game.getMonsterName() + " current health " + game.getMonsterHealth());
           playerTurn = false;
         } else {
-          System.out.println(presentation.illegalMoveNotification());
-          throw new IllegalMoveException((String) presentation.illegalMoveNotification());
+
+          try {
+            throw new IllegalMoveException((String) presentation.illegalMoveNotification());
+          } catch (IllegalMoveException e) {
+            System.out.println(presentation.illegalMoveNotification());
+          }
         }
 
 
