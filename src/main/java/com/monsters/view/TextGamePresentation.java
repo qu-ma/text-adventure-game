@@ -13,7 +13,8 @@ public class TextGamePresentation implements GamePresentation {
   private final String winGamePattern;
   private final String lostGamePattern;
   private final String roundStartPattern;
-  private final String attackReportPattern;
+  private final String characterAttackReportPattern;
+  private final String monsterAttackReportPattern;
   private final String movePromptPattern;
   private final String monsterNamePattern;
   private final String playerNamePattern;
@@ -29,7 +30,8 @@ public class TextGamePresentation implements GamePresentation {
     winGamePattern = bundle.getString(Keys.WIN_GAME);
     lostGamePattern = bundle.getString(Keys.LOST_GAME);
     roundStartPattern = bundle.getString(Keys.ROUND_START);
-    attackReportPattern = bundle.getString(Keys.ATTACK_REPORT);
+    characterAttackReportPattern = bundle.getString(Keys.CHARACTER_ATTACK_REPORT);
+    monsterAttackReportPattern = bundle.getString(Keys.MONSTER_ATTACK_REPORT);
     movePromptPattern = bundle.getString(Keys.MOVE_PROMPT);
     monsterNamePattern = bundle.getString(Keys.MONSTER_NAME);
     playerNamePattern = bundle.getString(Keys.PLAYER_NAME);
@@ -44,52 +46,62 @@ public class TextGamePresentation implements GamePresentation {
   }
 
   @Override
-  public Object characterStatusNotice(Game game, String character, String monster) {
+  public Object characterStatusNotice(Game game) {
     return String.format(characterStatusPattern, game.getCharacterHealth(), game.getCharacterKeys());
   }
 
   @Override
-  public Object gameSummaryNotice() {
-    return null;
+  public Object gameSummaryNotice(Game game) {
+    return String.format(gameSummaryPattern, game.getCharacterHealth(), game.getMonsterHealth(), game.getCharacterKeys());
   }
 
   @Override
-  public Object nextMoveNotice(String player) {
-    return String.format(nextMovePattern, player);
+  public Object nextMoveNotice(String playerName) {
+    return String.format(nextMovePattern, playerName);
   }
 
   @Override
   public Object winRoundNotice(String characterName) {
-    return null;
+    return String.format(winRoundPattern, characterName);
   }
 
   @Override
-  public Object winGameNotice() {
-    return null;
+  public Object winGameNotice(String characterName) {
+    return String.format(winGamePattern, characterName);
   }
 
   @Override
-  public Object lostGameNotice() {
-    return null;
+  public Object lostGameNotice(String characterName) {
+    return String.format(lostGamePattern, characterName);
   }
 
   @Override
-  public Object roundStartNotice() {
-    return null;
+  public Object roundStartNotice(String monsterName) {
+    return String.format(roundStartPattern, monsterName);
   }
 
   @Override
-  public Object movePresentation(String player) {
-    return String.format(attackReportPattern, player);
+  public Object characterAttackReportNotice(Game game, String characterName, String monsterName) {
+    return String.format(characterAttackReportPattern, characterName, game.getCharacterAttack(), monsterName);
+  }
+
+  @Override
+  public Object monsterAttackReportNotice(Game game, String monsterName, String characterName) {
+    return String.format(monsterAttackReportPattern, monsterName, game.getMonsterAttack(), characterName);
   }
 
   @Override
   public Object movePrompt(Game game) {
-    return String.format(movePromptPattern); // attack, dodge?
+    return String.format(movePromptPattern, game.ATTACK_MOVE); // attack, dodge, run away, exit game?
+  }
+
+  @Override
+  public Object playAgainPrompt(Game game) {
+    return null;
   }
 
   @Override
   public Object illegalMoveNotification(Game game) {
-    return String.format(illegalMovePattern); // must choose option 1 or 2
+    return String.format(illegalMovePattern); // attack, dodge, run away, exit game?
   }
 }
