@@ -18,6 +18,7 @@ public class TextGamePresentation implements GamePresentation {
   private final String movePromptPattern;
   private final String monsterNamePattern;
   private final String playerNamePattern;
+  private final String playAgainPattern;
   private final String illegalMovePattern;
   private final String playStatePattern;
 
@@ -35,6 +36,7 @@ public class TextGamePresentation implements GamePresentation {
     movePromptPattern = bundle.getString(Keys.MOVE_PROMPT);
     monsterNamePattern = bundle.getString(Keys.MONSTER_NAME);
     playerNamePattern = bundle.getString(Keys.PLAYER_NAME);
+    playAgainPattern = bundle.getString(Keys.PLAY_AGAIN);
     illegalMovePattern = bundle.getString(Keys.ILLEGAL_MOVE);
   }
 
@@ -82,26 +84,26 @@ public class TextGamePresentation implements GamePresentation {
 
   @Override
   public Object characterAttackReportNotice(Game game, String characterName, String monsterName) {
-    return String.format(characterAttackReportPattern, characterName, game.getCharacterAttack(), monsterName);
+    return String.format(characterAttackReportPattern, characterName, game.getCharacterAttackDamage(), monsterName);
   }
 
   @Override
   public Object monsterAttackReportNotice(Game game, String monsterName, String characterName) {
-    return String.format(monsterAttackReportPattern, monsterName, game.getMonsterAttack(), characterName);
+    return String.format(monsterAttackReportPattern, monsterName, game.getMonsterAttackDamage(), characterName);
   }
 
   @Override
   public Object movePrompt(Game game) {
-    return String.format(movePromptPattern, game.ATTACK_MOVE); // attack, dodge, run away, exit game?
+    return String.format(movePromptPattern, game.ATTACK_MOVE);
   }
 
   @Override
-  public Object playAgainPrompt(Game game) {
-    return null;
+  public Object playAgainPrompt() {
+    return String.format(playAgainPattern);
   }
 
   @Override
-  public Object illegalMoveNotification(Game game) {
-    return String.format(illegalMovePattern); // attack, dodge, run away, exit game?
+  public Object illegalMoveNotification() {
+    return String.format(illegalMovePattern);
   }
 }

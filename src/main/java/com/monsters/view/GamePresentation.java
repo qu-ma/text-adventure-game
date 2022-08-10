@@ -15,6 +15,6 @@ public interface GamePresentation<T> {
   T characterAttackReportNotice(Game game, String characterName, String monsterName);
   T monsterAttackReportNotice(Game game, String monsterName, String characterName);
   T movePrompt(Game game);
-  T playAgainPrompt(Game game);
-  T illegalMoveNotification(Game game);
+  T playAgainPrompt();
+  T illegalMoveNotification();
 }
