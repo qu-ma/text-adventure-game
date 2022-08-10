@@ -23,7 +23,7 @@ public class DungeonMaster {
   private final int MAX = 10;
 
   private final ArrayList<String> monsterList = new ArrayList<>(
-      List.of("Water Monster", "Lava Monster", "Generic Monster"));
+      List.of("Lord Toaster Child", "Cthulhu", "Bob the Blob"));
 
   public DungeonMaster(BufferedReader reader, Monster monster, Character character, Game game,
       TextGamePresentation presentation) {
