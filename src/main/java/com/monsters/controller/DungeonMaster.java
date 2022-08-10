@@ -38,26 +38,39 @@ public class DungeonMaster {
     boolean victory = false;
     boolean playerTurn = true;
 
-    System.out.println(monster.getName() + " wants to battle!");
+    System.out.print(presentation.roundStartNotice(monster.getName()));
 
-    while (monster.getHealth() >= 0 && character.getHealth() >= 0) {
+    while (monster.getHealth() > 0 && character.getHealth() > 0) {
 
       if (playerTurn) {
-        System.out.println("Choose desired action (a: ATTACK!, b:RUN!)");
+        System.out.println(presentation.nextMoveNotice(game.getCharacterName())
+            + "Choose desired action (a: ATTACK!, b:RUN!)");
         String response = reader.readLine().trim().toLowerCase();
         if (response.equals("b")) {
-          gameOver();
+          runFromBattle();
+          break;
+        } else if (response.equals("a")) {
+          int damage = attackDamage();
+          monster.decreaseHealth(damage);
+          game.setCharacterAttackDamage(damage);
+          System.out.println("You imposed " + damage + " damage to " + monster.getName());
+          System.out.println(monster.getName() + " current health " + game.getMonsterHealth());
+          playerTurn = false;
+        } else {
+          System.out.println("Illegal move!");
+          System.out.println(presentation.illegalMoveNotification(game));
         }
-        int damage = attackDamage();
-        monster.decreaseHealth(damage);
-        System.out.println("You imposed " + damage + " damage to " + monster.getName());
-        System.out.println(monster.getName() + " current health " + game.getMonsterHealth());
-        playerTurn = false;
+
+
       } else {
+        System.out.println(presentation.nextMoveNotice(monster.getName()));
         int damage = attackDamage();
         character.decreaseHealth(damage);
-        System.out.println("Monster imposed " + damage + " damage to " + character.getName());
-        System.out.println(character.getName() + " current health " + game.getCharacterHealth());
+        game.setMonsterAttackDamage(damage);
+        System.out.println(presentation.monsterAttackReportNotice(game, monster.getName(), character.getName()));
+        //System.out.println("Monster imposed " + damage + " damage to " + character.getName());
+        //System.out.println(character.getName() + " current health " + game.getCharacterHealth());
+        System.out.println(presentation.characterStatusNotice(game));
         playerTurn = true;
       }
     }
@@ -66,6 +79,9 @@ public class DungeonMaster {
       victory = true;
       battleWon();
       System.out.println("You are victorious!");
+      if (game.getCharacterKeys() < 3) {
+        generateNewMonster();
+      }
     }
 
     return victory;
@@ -73,11 +89,12 @@ public class DungeonMaster {
 
   private void battleWon() {
     character.setKeys(character.getKeys() + 1);
-    Object object = presentation.winGameNotice();
+    System.out.println(
+        presentation.winRoundNotice(character.getName())); // game.getCharacterName();
   }
 
   public void gameOver() {
-    Object object = presentation.lostGameNotice();
+    Object object = presentation.lostGameNotice(character.getName());
   }
 
   public void gameWon() {
@@ -91,7 +108,12 @@ public class DungeonMaster {
 
   public void generateNewMonster() {
     monster.setHealth(25);
-    monster.setName(monsterList.get(character.getKeys()));
+    monster.setName(monsterList.get(game.getCharacterKeys()));
+  }
+
+  public void runFromBattle() {
+    System.out.println(
+        "Not to call you a coward, master, but sometimes, cowards do survive... - Starscream (Transformers: Revenge of the Fallen)\n");
   }
 
 
