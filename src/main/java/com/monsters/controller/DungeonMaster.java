@@ -40,13 +40,15 @@ public class DungeonMaster {
 
     System.out.println(monster.getName() + " wants to battle!");
 
-    while (monster.getHealth() >= 0 && character.getHealth() >= 0) {
+    System.out.println(presentation.roundStartNotice(monster.getName()));
+
+    while (monster.getHealth() > 0 && character.getHealth() > 0) {
 
       if (playerTurn) {
         System.out.println("Choose desired action (a: ATTACK!, b:RUN!)");
         String response = reader.readLine().trim().toLowerCase();
         if (response.equals("b")) {
-          gameOver();
+          break;
         }
         int damage = attackDamage();
         monster.decreaseHealth(damage);
@@ -66,6 +68,9 @@ public class DungeonMaster {
       victory = true;
       battleWon();
       System.out.println("You are victorious!");
+      if(game.getCharacterKeys() < 3) {
+        generateNewMonster();
+      }
     }
 
     return victory;
@@ -73,11 +78,11 @@ public class DungeonMaster {
 
   private void battleWon() {
     character.setKeys(character.getKeys() + 1);
-    Object object = presentation.winGameNotice();
+    System.out.println(presentation.winRoundNotice(character.getName())); // game.getCharacterName();
   }
 
   public void gameOver() {
-    Object object = presentation.lostGameNotice();
+    Object object = presentation.lostGameNotice(character.getName());
   }
 
   public void gameWon() {
@@ -91,7 +96,7 @@ public class DungeonMaster {
 
   public void generateNewMonster() {
     monster.setHealth(25);
-    monster.setName(monsterList.get(character.getKeys()));
+    monster.setName(monsterList.get(game.getCharacterKeys()));
   }
 
 
