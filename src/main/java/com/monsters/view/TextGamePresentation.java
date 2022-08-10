@@ -15,6 +15,7 @@ public class TextGamePresentation implements GamePresentation {
   private final String roundStartPattern;
   private final String characterAttackReportPattern;
   private final String monsterAttackReportPattern;
+  private final String monsterHealthReportPattern;
   private final String movePromptPattern;
   private final String monsterNamePattern;
   private final String playerNamePattern;
@@ -33,6 +34,7 @@ public class TextGamePresentation implements GamePresentation {
     roundStartPattern = bundle.getString(Keys.ROUND_START);
     characterAttackReportPattern = bundle.getString(Keys.CHARACTER_ATTACK_REPORT);
     monsterAttackReportPattern = bundle.getString(Keys.MONSTER_ATTACK_REPORT);
+    monsterHealthReportPattern = bundle.getString(Keys.MONSTER_HEALTH_REPORT);
     movePromptPattern = bundle.getString(Keys.MOVE_PROMPT);
     monsterNamePattern = bundle.getString(Keys.MONSTER_NAME);
     playerNamePattern = bundle.getString(Keys.PLAYER_NAME);
@@ -90,6 +92,11 @@ public class TextGamePresentation implements GamePresentation {
   @Override
   public Object monsterAttackReportNotice(Game game, String monsterName, String characterName) {
     return String.format(monsterAttackReportPattern, monsterName, game.getMonsterAttackDamage(), characterName);
+  }
+
+  @Override
+  public Object monsterHealthReport(String monsterName, Game game) {
+    return String.format(monsterHealthReportPattern, monsterName, game.getMonsterHealth());
   }
 
   @Override

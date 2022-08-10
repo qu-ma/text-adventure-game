@@ -12,6 +12,7 @@ public abstract class Keys {
   public static final String PLAY_STATE = "play_state";
   public static final String CHARACTER_ATTACK_REPORT = "character_attack_report";
   public static final String MONSTER_ATTACK_REPORT = "monster_attack_report";
+  public static final String MONSTER_HEALTH_REPORT = "monster_health_report";
   public static final String MOVE_PROMPT = "move_prompt";
   public static final String MONSTER_NAME = "monster_name";
   public static final String PLAYER_NAME = "player_name";

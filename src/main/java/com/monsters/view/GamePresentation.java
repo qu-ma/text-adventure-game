@@ -14,6 +14,7 @@ public interface GamePresentation<T> {
   T roundStartNotice(String monsterName);
   T characterAttackReportNotice(Game game, String characterName, String monsterName);
   T monsterAttackReportNotice(Game game, String monsterName, String characterName);
+  T monsterHealthReport(String monsterName, Game game);
   T movePrompt(Game game);
   T playAgainPrompt();
   T illegalMoveNotification();
