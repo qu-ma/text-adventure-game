@@ -1,21 +1,28 @@
 package com.monsters.model;
 
-public abstract class AbstractMonster {
+public abstract class CharacterModel {
 
+  protected int keys;
   private String name;
   private int health;
-  private int key;
 
 
-  public AbstractMonster(String name) {
+  public CharacterModel(String name) {
     this.name = name;
-    this.key = 1;
-    this.health = 25;
   }
 
-  public abstract int attack(int damage);
+  public CharacterModel(String name, int health) {
+    this.name = name;
+    this.health = health;
+  }
 
-  public abstract void roar();
+  public CharacterModel(String name, int health, int key) {
+    this.name = name;
+    this.health = health;
+    this.keys = key;
+  }
+
+  public abstract void speak();
 
   public void decreaseHealth(int damage) {
     this.health -= damage;
@@ -27,10 +34,6 @@ public abstract class AbstractMonster {
 
   public void setHealth(int health) {
     this.health = health;
-  }
-
-  public int getKey() {
-    return key;
   }
 
   public String getName() {

@@ -91,11 +91,11 @@ public class DungeonMaster {
   }
 
   private void battleWon() {
-    // TODO
-    character.setKeys(character.getKeys() + 1);
+    game.increaseKeys();
     System.out.println(
-        presentation.winRoundNotice(character.getName())); // game.getCharacterName();
+        presentation.winRoundNotice(game.getCharacterName()));
   }
+
 
   public void gameOver() {
 
@@ -121,11 +121,9 @@ public class DungeonMaster {
   }
 
   public void generateNewMonster() {
-    // TODO
-    monster.setHealth(25);
-    monster.setName(monsterList.get(game.getCharacterKeys()));
-    // game.generateNewMonster(25, monsterList.get(game.getCharacterKeys()));
+     game.generateNewMonster(25, monsterList.get(game.getCharacterKeys()));
   }
+
 
   public void runFromBattle() {
     System.out.println(
