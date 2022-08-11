@@ -91,7 +91,7 @@ public class Main {
     boolean status = true;
 
     if (character.getHealth() <= 0 || character.getKeys() == 3) {
-      status = false;
+      return false;
     }
 
     System.out.println("Would you like to continue (y/n)?");
@@ -112,6 +112,7 @@ public class Main {
 
     }
     status = response.equals("y");
+
 
     return status;
   }
