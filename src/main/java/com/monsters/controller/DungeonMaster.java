@@ -44,7 +44,7 @@ public class DungeonMaster {
     while (game.getMonsterHealth() > 0 && game.getCharacterHealth() > 0) {
 
       if (playerTurn) {
-        System.out.println(presentation.nextMoveNotice(game.getCharacterName()));
+        System.out.println(presentation.nextMoveCharacterNotice(game.getCharacterName()));
         String response = reader.readLine().trim().toLowerCase();
         if (response.equals("b")) {
           runFromBattle();
@@ -68,7 +68,7 @@ public class DungeonMaster {
 
 
       } else {
-        System.out.println(presentation.nextMoveNotice(game.getMonsterName()));
+        System.out.println(presentation.nextMoveMonsterNotice(game.getMonsterName()));
         int damage = attackDamage();
         game.decreaseTargetHealth(damage, "character");
         System.out.println(presentation.monsterAttackReportNotice(game, game.getMonsterName(),
