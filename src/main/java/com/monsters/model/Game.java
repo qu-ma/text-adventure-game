@@ -83,69 +83,20 @@ public class Game {
 
   public enum State {
     PLAYER_MOVE {
-      @Override
-      public boolean isAtStart() {
-        return true;
-      }
 
       @Override
       public boolean isFinished() {
         return false;
-      }
-
-      @Override
-      public State nextMoveState() {
-        return MONSTER_MOVE;
-      }
-
-      @Override
-      public State nextWinEntireGameState() {
-        return MONSTER_WIN;
-      }
-
-      @Override
-      public State nextLostState() {
-        return MONSTER_WIN;
-      }
-
-      @Override
-      public State nextWinRoundState() {
-        return MONSTER_WIN;
       }
 
     },
 
     MONSTER_MOVE {
-      @Override
-      public boolean isAtStart() {
-        return true;
-      }
 
       @Override
       public boolean isFinished() {
         return false;
       }
-
-      @Override
-      public State nextMoveState() {
-        return PLAYER_MOVE;
-      }
-
-      @Override
-      public State nextWinEntireGameState() {
-        return PLAYER_WIN;
-      }
-
-      @Override
-      public State nextLostState() {
-        return PLAYER_WIN;
-      }
-
-      @Override
-      public State nextWinRoundState() {
-        return PLAYER_WIN;
-      }
-
 
     },
 
@@ -154,54 +105,10 @@ public class Game {
     private static final String NO_MOVES_ALLOWED_FORMAT = "Game is already in a finished state (HP = %d); no further moves possible";
     private static final String INVALID_MOVE = "This move is not an option.";
 
-    public boolean isAtStart() {
-      return false;
-    }
-
     public boolean isFinished() {
       return false;
     }
 
-    public State nextMoveState() {
-      return null;
-    }
-
-    public State nextWinEntireGameState() {
-      return this;
-    }
-
-    public State nextLostState() {
-      return this;
-    }
-
-    public State nextWinRoundState() {
-      return this;
-    }
-
-    public State play(int characterHealth, int monsterHealth, int keysCharacterHas, int userMove)
-        throws GameFinishedException, IllegalMoveException {
-      State nextState = null;
-      if (isFinished()) {
-        throw new GameFinishedException(String.format(NO_MOVES_ALLOWED_FORMAT, characterHealth));
-      }
-      if (ATTACK_MOVE != userMove) {
-        throw new IllegalMoveException(
-            String.format(INVALID_MOVE, userMove));
-      }
-//        int newCount = count + move * sign;
-
-      if (characterHealth > 0 && monsterHealth <= 0) {
-        nextState = nextWinRoundState();
-      } else if (characterHealth > 0 && monsterHealth > 0) {
-        nextState = nextMoveState();
-      } else if (characterHealth <= 0) {
-        nextState = nextLostState();
-      } else if (keysCharacterHas == 3) {
-        nextState = nextWinEntireGameState();
-      }
-
-      return nextState;
-    }
 
   }
 
