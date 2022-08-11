@@ -48,19 +48,25 @@ public class TextGamePresentation implements GamePresentation {
 
   @Override
   public String stateRepresentation(Game game, String character, String monster) {
-    String player = game.getState().isFinished() ? ((game.getState() == State.PLAYER_WIN) ? character : monster) : ((game.getState() == State.PLAYER_MOVE) ? character : monster);
-    String next = game.getState().isFinished() ? String.format(winGamePattern, player) : String.format(playStatePattern, player);
-    return String.format(gameSummaryPattern, game.getCharacterHealth(), game.getMonsterHealth(), game.getCharacterKeys(), next);
+    String player =
+        game.getState().isFinished() ? ((game.getState() == State.PLAYER_WIN) ? character : monster)
+            : ((game.getState() == State.PLAYER_MOVE) ? character : monster);
+    String next = game.getState().isFinished() ? String.format(winGamePattern, player)
+        : String.format(playStatePattern, player);
+    return String.format(gameSummaryPattern, game.getCharacterHealth(), game.getMonsterHealth(),
+        game.getCharacterKeys(), next);
   }
 
   @Override
   public Object characterStatusNotice(Game game) {
-    return String.format(characterStatusPattern, game.getCharacterHealth(), game.getCharacterKeys());
+    return String.format(characterStatusPattern, game.getCharacterHealth(),
+        game.getCharacterKeys());
   }
 
   @Override
   public Object gameSummaryNotice(Game game) {
-    return String.format(gameSummaryPattern, game.getCharacterHealth(), game.getMonsterHealth(), game.getCharacterKeys());
+    return String.format(gameSummaryPattern, game.getCharacterHealth(), game.getMonsterHealth(),
+        game.getCharacterKeys());
   }
 
   @Override
@@ -95,12 +101,14 @@ public class TextGamePresentation implements GamePresentation {
 
   @Override
   public Object characterAttackReportNotice(Game game, String characterName, String monsterName) {
-    return String.format(characterAttackReportPattern, characterName, game.getCharacterAttackDamage(), monsterName);
+    return String.format(characterAttackReportPattern, characterName,
+        game.getCharacterAttackDamage(), monsterName);
   }
 
   @Override
   public Object monsterAttackReportNotice(Game game, String monsterName, String characterName) {
-    return String.format(monsterAttackReportPattern, monsterName, game.getMonsterAttackDamage(), characterName);
+    return String.format(monsterAttackReportPattern, monsterName, game.getMonsterAttackDamage(),
+        characterName);
   }
 
   @Override
