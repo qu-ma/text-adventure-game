@@ -51,7 +51,7 @@ public class Main {
       System.out.println("Let the journey begin " + character.getName() + "!");
 
       Game.State state = Game.State.PLAYER_MOVE;
-      Monster monster = new Monster("Lord Toaster Child", 25, 1);
+      Monster monster = new Monster("Lord Toaster Child", 5, 1);
       Game game = new Game(state, character, monster);
 
       DungeonMaster dungeonMaster = new DungeonMaster(reader, monster, character, game,
@@ -77,8 +77,8 @@ public class Main {
   }
 
   private static boolean continueGame(BufferedReader reader, Character character, Game game,
-      TextGamePresentation presentation)
-      throws IOException {
+      TextGamePresentation presentation) throws IOException {
+
     boolean status = true;
 
     if (character.getHealth() <= 0 || character.getKeys() == 3) {
@@ -86,11 +86,20 @@ public class Main {
     }
 
     System.out.println("Would you like to continue (y/n)?");
-
     String response = reader.readLine().trim().toLowerCase();
 
-    if(!response.equals("n") && !response.equals("y")) {
+    // Throw illegal argument exception if user does not enter y or n
+    try{
+      if(!response.equals("n") && !response.equals("y")) {
+        throw new IllegalMoveException((String) presentation.illegalResponseNotification());
+      }
+    }catch(IllegalMoveException e) {
       System.out.println(presentation.illegalResponseNotification());
+    }
+
+    // Keep asking for user input until they enter a valid response
+    // Throw Illegal argument exception everytime they enter invalid input
+    if(!response.equals("n") && !response.equals("y")) {
       while (!response.equals("n") && !response.equals("y")) {
         try {
           System.out.println("Would you like to continue (y/n)?");
