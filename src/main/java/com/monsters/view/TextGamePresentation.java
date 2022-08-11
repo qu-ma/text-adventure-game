@@ -9,6 +9,8 @@ public class TextGamePresentation implements GamePresentation {
   private final String characterStatusPattern;
   private final String gameSummaryPattern;
   private final String nextMovePattern;
+  private final String nextMoveCharacterPattern;
+  private final String nextMoveMonsterPattern;
   private final String runAwayPattern;
   private final String winRoundPattern;
   private final String winGamePattern;
@@ -30,6 +32,8 @@ public class TextGamePresentation implements GamePresentation {
     gameSummaryPattern = bundle.getString(Keys.GAME_SUMMARY);
     playStatePattern = bundle.getString(Keys.PLAY_STATE);
     nextMovePattern = bundle.getString(Keys.NEXT_MOVE);
+    nextMoveCharacterPattern = bundle.getString(Keys.NEXT_MOVE_CHARACTER);
+    nextMoveMonsterPattern = bundle.getString(Keys.NEXT_MOVE_MONSTER);
     runAwayPattern = bundle.getString(Keys.RUN_AWAY);
     winRoundPattern = bundle.getString(Keys.WIN_ROUND);
     winGamePattern = bundle.getString(Keys.WIN_GAME);
@@ -72,6 +76,16 @@ public class TextGamePresentation implements GamePresentation {
   @Override
   public Object nextMoveNotice(String playerName) {
     return String.format(nextMovePattern, playerName);
+  }
+
+  @Override
+  public Object nextMoveCharacterNotice(String playerName) {
+    return String.format(nextMoveCharacterPattern, playerName);
+  }
+
+  @Override
+  public Object nextMoveMonsterNotice(String monsterName) {
+    return String.format(nextMoveMonsterPattern, monsterName);
   }
 
   @Override

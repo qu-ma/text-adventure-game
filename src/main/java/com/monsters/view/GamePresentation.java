@@ -12,6 +12,10 @@ public interface GamePresentation<T> {
 
   T nextMoveNotice(String playerName);
 
+  T nextMoveCharacterNotice(String playerName);
+
+  T nextMoveMonsterNotice(String monsterName);
+
   T runAwayNotice();
 
   T winRoundNotice(String characterName);
