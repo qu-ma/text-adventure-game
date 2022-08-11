@@ -1,24 +1,17 @@
 package com.monsters;
-//package loopmusicjavaupdated;
 
 import com.monsters.controller.DungeonMaster;
 import com.monsters.model.Game;
-import com.monsters.model.Game.State;
 import com.monsters.model.Monster;
 import com.monsters.model.exception.IllegalMoveException;
 import com.monsters.view.TextGamePresentation;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import com.monsters.model.Character;
 import java.util.ResourceBundle;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.swing.JOptionPane;
-import org.w3c.dom.Text;
+
 
 public class Main {
 
@@ -76,13 +69,10 @@ public class Main {
         System.out.println(presentation.winGameNotice(game.getCharacterName()));
       } else {
         dungeonMaster.gameOver();
-        // System.out.println(presentation.lostGameNotice(game.getCharacterName()));
       }
-
 
     } catch (IOException e) {
       throw new RuntimeException(e);
-
     }
   }
 
@@ -98,7 +88,6 @@ public class Main {
     System.out.println("Would you like to continue (y/n)?");
 
     String response = reader.readLine().trim().toLowerCase();
-    //NOTE: doesn't throw Exception on first invalid response.
 
     if(!response.equals("n") && !response.equals("y")) {
       System.out.println(presentation.illegalResponseNotification());
@@ -114,45 +103,8 @@ public class Main {
         }
       }
     }
-
     status = response.equals("y");
-
 
     return status;
   }
-
-//audio
-
-//  public class LoopMusicJavaUpdated{
-//
-//    public void main(String[] args) {
-//      String filepath = "";
-//
-//      musicStuff musicObject = new musicStuff();
-//      musicObject.playMusic(filepath);
-//    }
-//
-//  }
-
-//  public static class musicStuff{
-//    void playMusic(String musicLocation){
-//      try{
-//        File musicpath = new File(musicLocation);
-//
-//        if(musicpath.exists()){
-//          AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicpath);
-//          Clip clip = AudioSystem.getClip();
-//          clip.open(audioInput);
-//          clip.loop(Clip.LOOP_CONTINUOUSLY);
-//          clip.start();
-//        }else{
-//          System.out.println("Can't find file");
-//        }
-//      }catch (Exception ex){
-//        ex.printStackTrace();
-//      }
-//    }
-//  }
-
-
 }
