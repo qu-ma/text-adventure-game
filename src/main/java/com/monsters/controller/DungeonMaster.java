@@ -110,16 +110,13 @@ public class DungeonMaster {
   }
 
   public void generateNewMonster() {
-    // TODO
-//    monster.setHealth(25);
-//    monster.setName(monsterList.get(game.getCharacterKeys()));
      game.generateNewMonster(25, monsterList.get(game.getCharacterKeys()));
   }
 
 
   public void runFromBattle() {
     System.out.println(
-        "Not to call you a coward, master, but sometimes, cowards do suUpdafdsfrvive... - Starscream (Transformers: Revenge of the Fallen)\n");
+        "Not to call you a coward, master, but sometimes, cowards do survive... - Starscream (Transformers: Revenge of the Fallen)\n");
   }
 
 
