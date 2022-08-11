@@ -22,8 +22,6 @@ public abstract class CharacterModel {
     this.keys = key;
   }
 
-  public abstract int attack(int damage);
-
   public abstract void speak();
 
   public void decreaseHealth(int damage) {

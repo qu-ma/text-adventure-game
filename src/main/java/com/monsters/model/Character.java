@@ -15,13 +15,6 @@ public class Character extends CharacterModel {
   }
 
   @Override
-  public int attack(int damage) {
-    // TODO add rng for random damage
-    System.out.println("Attack!");
-    return damage;
-  }
-
-  @Override
   public void speak() {
     System.out.println("I will prevail");
   }
