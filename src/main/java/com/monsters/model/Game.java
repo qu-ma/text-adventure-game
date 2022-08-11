@@ -77,16 +77,8 @@ public class Game {
     return characterAttackDamage;
   }
 
-  public void setCharacterAttackDamage(int characterAttackDamage) {
-    this.characterAttackDamage = characterAttackDamage;
-  }
-
   public int getMonsterAttackDamage() {
     return monsterAttackDamage;
-  }
-
-  public void setMonsterAttackDamage(int monsterAttackDamage) {
-    this.monsterAttackDamage = monsterAttackDamage;
   }
 
   public enum State {
@@ -159,7 +151,6 @@ public class Game {
 
     PLAYER_WIN,
     MONSTER_WIN;
-    //Bonus strings. Move to strings.properties file??????
     private static final String NO_MOVES_ALLOWED_FORMAT = "Game is already in a finished state (HP = %d); no further moves possible";
     private static final String INVALID_MOVE = "This move is not an option.";
 
@@ -187,8 +178,6 @@ public class Game {
       return this;
     }
 
-
-    //Still no random number generator for attack strength
     public State play(int characterHealth, int monsterHealth, int keysCharacterHas, int userMove)
         throws GameFinishedException, IllegalMoveException {
       State nextState = null;
@@ -213,7 +202,6 @@ public class Game {
 
       return nextState;
     }
-
 
   }
 
