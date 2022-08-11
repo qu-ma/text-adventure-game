@@ -39,6 +39,7 @@ public class Main {
 
       boolean play = true;
       PlayMusic music = new PlayMusic();
+      //This will need to be updated with the users own filepath
       music.playMusic("C:\\Users\\i9\\Documents\\Amazon SDE\\Course Materials\\Java-Part2\\LabSetup_Java-Part2\\StudentWork\\IntmJ\\text-adventure-game\\src\\main\\resources\\main_combat.wav");
       System.out.println("Welcome to Dungeon Master! Your task, should you choose to accept it"
           + "is to destroy all monsters and collect their keys.\n");
