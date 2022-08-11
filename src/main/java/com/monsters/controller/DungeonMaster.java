@@ -54,7 +54,6 @@ public class DungeonMaster {
           game.decreaseTargetHealth(damage, "monster");
           System.out.println(presentation.characterAttackReportNotice(game, game.getCharacterName(),
               game.getMonsterName()));
-          // TODO
           System.out.println(game.getMonsterName() + " current health " + game.getMonsterHealth());
           playerTurn = false;
         } else {
@@ -65,8 +64,6 @@ public class DungeonMaster {
             System.out.println(presentation.illegalMoveNotification());
           }
         }
-
-
       } else {
         System.out.println(presentation.nextMoveNotice(game.getMonsterName()));
         int damage = attackDamage();
@@ -129,7 +126,6 @@ public class DungeonMaster {
     System.out.println(
         "Not to call you a coward, master, but sometimes, cowards do survive... - Starscream (Transformers: Revenge of the Fallen)\n");
   }
-
 
   public Reader getReader() {
     return reader;
