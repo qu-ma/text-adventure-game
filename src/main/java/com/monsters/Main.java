@@ -1,4 +1,5 @@
 package com.monsters;
+//package loopmusicjavaupdated;
 
 import com.monsters.controller.DungeonMaster;
 import com.monsters.model.Game;
@@ -7,11 +8,16 @@ import com.monsters.model.Monster;
 import com.monsters.model.exception.IllegalMoveException;
 import com.monsters.view.TextGamePresentation;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import com.monsters.model.Character;
 import java.util.ResourceBundle;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.JOptionPane;
 import org.w3c.dom.Text;
 
 public class Main {
@@ -37,11 +43,10 @@ public class Main {
     ) {
 
       TextGamePresentation presentation = new TextGamePresentation(bundle);
-      // Generate world and monsters
 
-      // Let play = true
       boolean play = true;
-
+      PlayMusic music = new PlayMusic();
+      music.playMusic("C:\\Users\\i9\\Documents\\Amazon SDE\\Course Materials\\Java-Part2\\LabSetup_Java-Part2\\StudentWork\\IntmJ\\text-adventure-game\\src\\main\\resources\\main_combat.wav");
       System.out.println("Welcome to Dungeon Master! Your task, should you choose to accept it"
           + "is to destroy all monsters and collect their keys.\n");
 
@@ -115,6 +120,39 @@ public class Main {
 
     return status;
   }
+
+//audio
+
+//  public class LoopMusicJavaUpdated{
+//
+//    public void main(String[] args) {
+//      String filepath = "";
+//
+//      musicStuff musicObject = new musicStuff();
+//      musicObject.playMusic(filepath);
+//    }
+//
+//  }
+
+//  public static class musicStuff{
+//    void playMusic(String musicLocation){
+//      try{
+//        File musicpath = new File(musicLocation);
+//
+//        if(musicpath.exists()){
+//          AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicpath);
+//          Clip clip = AudioSystem.getClip();
+//          clip.open(audioInput);
+//          clip.loop(Clip.LOOP_CONTINUOUSLY);
+//          clip.start();
+//        }else{
+//          System.out.println("Can't find file");
+//        }
+//      }catch (Exception ex){
+//        ex.printStackTrace();
+//      }
+//    }
+//  }
 
 
 }
