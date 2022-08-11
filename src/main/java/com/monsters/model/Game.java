@@ -22,14 +22,6 @@ public class Game {
     this.character = character;
   }
 
-  ////  public void play(int userMove, int attackDamage) {
-////    state = state.play(getCharacterHealth(), getMonsterHealth(), getCharacterKeys(), userMove);
-////    if(state.PLAYER_MOVE.isAtStart()){
-////      character.setHealth(character.getHealth() - attackDamage);
-////    }
-////    currentCount += move * direction.getSign(); Need to get the health of whichever characters turn it is at that moment
-//    firstMove = false;
-//  }
   public void decreaseTargetHealth(int damage, String target) {
     if (target == "monster") {
       monster.decreaseHealth(damage);
