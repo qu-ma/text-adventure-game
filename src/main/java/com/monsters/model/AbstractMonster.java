@@ -1,6 +1,26 @@
 package com.monsters.model;
 
 public abstract class AbstractMonster {
+//  field - make fields protected (Makes them inheritable/accessible by subclasses. Can use 'this' instead of 'super'
+    //name
+    //health
+    //key
+//  constructor
+    //name
+    //name, health
+    //name, health, key
+//  methods
+    //attack ?? not used here
+    //roar - only in monster (change to catchphrase)?
+    //decreaseHealth
+    //getHealth
+    //setHealth
+    //getKey - only in character
+    //getName
+    //setName
+
+
+
 
   private String name;
   private int health;

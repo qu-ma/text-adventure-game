@@ -91,11 +91,11 @@ public class DungeonMaster {
   }
 
   private void battleWon() {
-    // TODO
-    character.setKeys(character.getKeys() + 1);
+    game.increaseKeys();
     System.out.println(
-        presentation.winRoundNotice(character.getName())); // game.getCharacterName();
+        presentation.winRoundNotice(game.getCharacterName()));
   }
+
 
   public void gameOver() {
     System.out.println(presentation.lostGameNotice(game.getCharacterName()));
@@ -111,14 +111,15 @@ public class DungeonMaster {
 
   public void generateNewMonster() {
     // TODO
-    monster.setHealth(25);
-    monster.setName(monsterList.get(game.getCharacterKeys()));
-    // game.generateNewMonster(25, monsterList.get(game.getCharacterKeys()));
+//    monster.setHealth(25);
+//    monster.setName(monsterList.get(game.getCharacterKeys()));
+     game.generateNewMonster(25, monsterList.get(game.getCharacterKeys()));
   }
+
 
   public void runFromBattle() {
     System.out.println(
-        "Not to call you a coward, master, but sometimes, cowards do survive... - Starscream (Transformers: Revenge of the Fallen)\n");
+        "Not to call you a coward, master, but sometimes, cowards do suUpdafdsfrvive... - Starscream (Transformers: Revenge of the Fallen)\n");
   }
 
 
