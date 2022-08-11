@@ -48,12 +48,12 @@ public class Main {
       System.out.println("What is your name hero?");
       String name = reader.readLine().trim();
 
-      Character character = new Character(name);
+      Character character = new Character(name, 100);
 
       System.out.println("Let the journey begin " + character.getName() + "!");
 
       Game.State state = Game.State.PLAYER_MOVE;
-      Monster monster = new Monster("Lord Toaster Child", "Key One");
+      Monster monster = new Monster("Lord Toaster Child", 25, 1);
       Game game = new Game(state, character, monster);
 
       DungeonMaster dungeonMaster = new DungeonMaster(reader, monster, character, game,
