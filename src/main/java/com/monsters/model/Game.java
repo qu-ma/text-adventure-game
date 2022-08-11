@@ -2,16 +2,10 @@ package com.monsters.model;
 
 import com.monsters.model.exception.GameFinishedException;
 import com.monsters.model.exception.IllegalMoveException;
-import java.sql.Statement;
 
 
 public class Game {
 
-  //Two additional fields for damage
-  //monster damage
-  //character damage
-  //Both coming from controller class.
-  //
   private int characterAttackDamage;
   private int monsterAttackDamage;
   public static final int ATTACK_MOVE = 1;
@@ -55,7 +49,6 @@ public class Game {
     return state;
   }
 
-  //Add setters for these from Controller class. Should go controller > Game > Monster/Character
   public int getMonsterHealth() {
     return monster.getHealth();
   }
