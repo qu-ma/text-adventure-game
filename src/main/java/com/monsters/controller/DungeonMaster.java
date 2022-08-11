@@ -98,13 +98,6 @@ public class DungeonMaster {
   }
 
   public void gameOver() {
-//    System.out.println(" #####     #    #     # #######    ####### #     # ####### ######");
-//    System.out.println("#     #   # #   ##   ## #          #     # #     # #       #     #");
-//    System.out.println("#        #   #  # # # # #          #     # #     # #       #     #");
-//    System.out.println("#  #### #     # #  #  # #####      #     # #     # #####   ######");
-//    System.out.println("#     # ####### #     # #          #     #  #   #  #       #   #");
-//    System.out.println("#     # #     # #     # #          #     #   # #   #       #    #");
-//    System.out.println(" #####  #     # #     # #######    #######    #    ####### #     #");
 
     System.out.println(presentation.lostGameNotice(game.getCharacterName()));
 
@@ -119,6 +112,7 @@ public class DungeonMaster {
   }
 
   public void gameWon() {
+
   }
 
   public int attackDamage() {

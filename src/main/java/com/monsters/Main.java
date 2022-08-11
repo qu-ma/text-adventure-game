@@ -20,20 +20,6 @@ public class Main {
 
   public static void main(String[] args) {
 
-//    System.out.println("  ######                                              #     #");
-//    System.out.println(
-//        " #     # #    # #    #  ####  ######  ####  #    #    ##   ##   ##    ####  ##### ###### #####");
-//    System.out.println(
-//        " #     # #    # ##   # #    # #      #    # ##   #    # # # #  #  #  #        #   #      #    #");
-//    System.out.println(
-//        " #     # #    # # #  # #      #####  #    # # #  #    #  #  # #    #  ####    #   #####  #    #");
-//    System.out.println(
-//        " #     # #    # #  # # #  ### #      #    # #  # #    #     # ######      #   #   #      #####");
-//    System.out.println(
-//        " #     # #    # #   ## #    # #      #    # #   ##    #     # #    # #    #   #   #      #   #");
-//    System.out.println(
-//        " ######   ####  #    #  ####  ######  ####  #    #    #     # #    #  ####    #   ###### #    #");
-
     System.out.println(" '########::'##::::'##:'##::: ##::'######:::'########::'#######::'##::: ##::::'##::::'##::::'###:::::'######::'########:'########:'########::");
     System.out.println(" ##.... ##: ##:::: ##: ###:: ##:'##... ##:: ##.....::'##.... ##: ###:: ##:::: ###::'###:::'## ##:::'##... ##:... ##..:: ##.....:: ##.... ##:");
     System.out.println(" ##:::: ##: ##:::: ##: ####: ##: ##:::..::: ##::::::: ##:::: ##: ####: ##:::: ####'####::'##:. ##:: ##:::..::::: ##:::: ##::::::: ##:::: ##:");
@@ -101,26 +87,29 @@ public class Main {
     boolean status = true;
 
     if (character.getHealth() <= 0 || character.getKeys() == 3) {
-      status = false;
+      return false;
     }
 
     System.out.println("Would you like to continue (y/n)?");
 
     String response = reader.readLine().trim().toLowerCase();
     //NOTE: doesn't throw Exception on first invalid response.
-    while (!response.equals("n") && !response.equals("y")) {
-      try {
-        System.out.println("Would you like to continue (y/n)?");
-        response = reader.readLine().trim().toLowerCase();
-        if(!response.equals("n") && !response.equals("y")){
-          throw new IllegalMoveException((String) presentation.illegalResponseNotification());
+
+    if(!response.equals("n") && !response.equals("y")) {
+      System.out.println(presentation.illegalResponseNotification());
+      while (!response.equals("n") && !response.equals("y")) {
+        try {
+          System.out.println("Would you like to continue (y/n)?");
+          response = reader.readLine().trim().toLowerCase();
+          if (!response.equals("n") && !response.equals("y")) {
+            throw new IllegalMoveException((String) presentation.illegalResponseNotification());
+          }
+        } catch (IllegalMoveException e) {
+          System.out.println(presentation.illegalResponseNotification());
         }
-      } catch (IllegalMoveException e) {
-        System.out.println(presentation.illegalResponseNotification());
-
       }
-
     }
+
     status = response.equals("y");
 
     return status;
